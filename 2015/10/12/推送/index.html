@@ -1,0 +1,931 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="笔记,Objective-C," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="推送也叫推送通知，是在iOS 3.0以后被引入的功能。是当程序没有启动或不在前台运行时，告诉用户有新消息的一种途径。有远程推送和本地推送之分。本地推送就是由应用程序发起的推送通知，不经过服务器。远程推送是由服务器发送的消息经过苹果的APNS（Apple Push Notification Service）服务远程推送给设备。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS的本地推送和远程推送">
+<meta property="og:url" content="zhangfei.tk/2015/10/12/推送/index.html">
+<meta property="og:site_name" content="张飞的技术博客">
+<meta property="og:description" content="推送也叫推送通知，是在iOS 3.0以后被引入的功能。是当程序没有启动或不在前台运行时，告诉用户有新消息的一种途径。有远程推送和本地推送之分。本地推送就是由应用程序发起的推送通知，不经过服务器。远程推送是由服务器发送的消息经过苹果的APNS（Apple Push Notification Service）服务远程推送给设备。">
+<meta property="og:updated_time" content="2016-03-23T05:04:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS的本地推送和远程推送">
+<meta name="twitter:description" content="推送也叫推送通知，是在iOS 3.0以后被引入的功能。是当程序没有启动或不在前台运行时，告诉用户有新消息的一种途径。有远程推送和本地推送之分。本地推送就是由应用程序发起的推送通知，不经过服务器。远程推送是由服务器发送的消息经过苹果的APNS（Apple Push Notification Service）服务远程推送给设备。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> iOS的本地推送和远程推送 | 张飞的技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-64177819-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?88f14784f52b40a5e212d560afbe9da4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">张飞的技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一枚专注与移动开发的IT文艺青年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS的本地推送和远程推送
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-12T00:00:00+08:00" content="2015-10-12">
+              2015-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/12/推送/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/12/推送/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/10/12/推送/" class="leancloud_visitors" data-flag-title="iOS的本地推送和远程推送">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>推送也叫推送通知，是在iOS 3.0以后被引入的功能。是当程序没有启动或不在前台运行时，告诉用户有新消息的一种途径。有远程推送和本地推送之分。本地推送就是由应用程序发起的推送通知，不经过服务器。远程推送是由服务器发送的消息经过苹果的APNS（Apple Push Notification Service）服务远程推送给设备。</p>
+<a id="more"></a>
+<h2 id="关于推送"><a href="#关于推送" class="headerlink" title="关于推送"></a>关于推送</h2><blockquote>
+<p>推送也叫推送通知，是在iOS 3.0以后被引入的功能。是当程序没有启动或不在前台运行时，告诉用户有新消息的一种途径。有远程推送和本地推送之分。本地推送就是由应用程序发起的推送通知，不经过服务器。远程推送是由服务器发送的消息经过苹果的APNS（Apple Push Notification Service）服务远程推送给设备。</p>
+</blockquote>
+<h2 id="本地推送"><a href="#本地推送" class="headerlink" title="本地推送"></a>本地推送</h2><p>本地推送不依赖服务器，只需要在程序里面写好触发推送通知的逻辑就可以了。添加一个本地通知的代码如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UILocalNotification</span> *localNotification = [[<span class="built_in">UILocalNotification</span> alloc] init];<span class="comment">//初始化本地通知</span></span><br><span class="line">   <span class="keyword">if</span> (localNotification != <span class="literal">nil</span>) &#123;</span><br><span class="line">       <span class="built_in">NSDate</span> *now = [<span class="built_in">NSDate</span> new];</span><br><span class="line">       localNotification.fireDate = [now dateByAddingTimeInterval:<span class="number">15</span>];<span class="comment">//15秒后通知</span></span><br><span class="line">       localNotification.repeatInterval = k<span class="built_in">CFCalendarUnitHour</span>;<span class="comment">//循环次数，kCFCalendarUnitHour一小时一次</span></span><br><span class="line">       localNotification.timeZone = [<span class="built_in">NSTimeZone</span> defaultTimeZone];<span class="comment">//UILocalNotification激发时间是否根据时区改变而改变</span></span><br><span class="line">       localNotification.applicationIconBadgeNumber += <span class="number">1</span>;<span class="comment">//应用的红色数字</span></span><br><span class="line">       localNotification.soundName = <span class="built_in">UILocalNotificationDefaultSoundName</span>;<span class="comment">//声音，可以换成自己的，如：alarm.soundName = @"myMusic.caf"</span></span><br><span class="line">       localNotification.alertBody = <span class="string">@"我是通知内容"</span>;<span class="comment">//提示信息 弹出提示框</span></span><br><span class="line">       localNotification.alertAction = <span class="string">@"打开"</span>;<span class="comment">//解锁按钮文字，就是在锁屏情况下有一个‘滑动来XXX’,这儿的XXX就是这里所设置的alertAction。如果不设置就是@“查看”</span></span><br><span class="line">       localNotification.hasAction = <span class="literal">YES</span>;<span class="comment">//是否显示额外的按钮，为no时alertAction的设置不起作用，hasAction默认是YES</span></span><br><span class="line">       <span class="comment">//通知的额外信息，不会展示出来，是用来判断通知是哪一条的额外信息</span></span><br><span class="line">       <span class="built_in">NSDictionary</span> *infoDict = [<span class="built_in">NSDictionary</span> dictionaryWithObject:<span class="string">@"xiaofei"</span> forKey:<span class="string">@"birthday"</span>];</span><br><span class="line">       localNotification.userInfo = infoDict;<span class="comment">//添加额外的信息</span></span><br><span class="line">       [[<span class="built_in">UIApplication</span> sharedApplication] scheduleLocalNotification:localNotification];<span class="comment">//添加本地通知</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>如果想要取消本地推送，可以用下面的代码进行取消，既可以通过获取userInfo信息取消特定的消息，也可以取消全部的消息。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIApplication</span> *app = [<span class="built_in">UIApplication</span> sharedApplication];</span><br><span class="line">    <span class="built_in">NSArray</span>* localNotifications = [app scheduledLocalNotifications];<span class="comment">//获取当前应用所有的通知</span></span><br><span class="line">    <span class="keyword">if</span> (localNotifications) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">UILocalNotification</span>* notification <span class="keyword">in</span> localNotifications) &#123;</span><br><span class="line">            <span class="built_in">NSDictionary</span> *dic = notification.userInfo;</span><br><span class="line">            <span class="keyword">if</span> (dic) &#123;</span><br><span class="line">                <span class="built_in">NSString</span>* key = [dic objectForKey:<span class="string">@"key"</span>];</span><br><span class="line">                <span class="keyword">if</span> ([key isEqualToString:<span class="string">@"name"</span>]) &#123;</span><br><span class="line">                    <span class="comment">//取消推送 （指定一个取消）</span></span><br><span class="line">                    [app cancelLocalNotification:notification];</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//取消当前应用所有的推送</span></span><br><span class="line">    <span class="comment">//[app cancelAllLocalNotifications];</span></span><br></pre></td></tr></table></figure>
+<p>收到消息后该如何处理呢？不管是在程序正在使用或者退出的状态下，都是通过UIApplication的代理方法进行处理，该方法如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application didReceiveLocalNotification:(<span class="built_in">UILocalNotification</span> *)notification &#123;</span><br><span class="line">    <span class="comment">//处理收到的通知...</span></span><br><span class="line">    application.applicationIconBadgeNumber = <span class="number">0</span>;<span class="comment">//应用程序角标清零</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="远程推送"><a href="#远程推送" class="headerlink" title="远程推送"></a>远程推送</h2><blockquote>
+<p>iOS的远程通知和安卓不一样，iOS要通过苹果公司提供的推送服务(APNS)才能把想要推送的消息从服务器那边推送到iPhone设备上。因此还得和苹果的APNS打交道。要在程序中添加推送服务需要配置不少东西，具体步骤如下：</p>
+</blockquote>
+<p>给应用程序的App ID添加Push Notifications服务–&gt;配置对应的证书–&gt;配置对应Provisioning Profiles文件–&gt;获取Device Token–&gt;服务器端通过deviceToken和APNS建立SSL连接–&gt;服务器端给APNS服务器发送推送消息</p>
+<blockquote>
+<p>配置Push Notifications服务和相应证书请参考<a href="http://www.jianshu.com/p/074bc6fffd0e" target="_blank" rel="external">教你一步一步获取App ID</a>，配置文件Provisioning Profiles文件请移步<a href="http://www.jianshu.com/p/6aa72b177daf" target="_blank" rel="external">教你一步一步获取Provisioning Profiles</a>。</p>
+</blockquote>
+<p>获取deviceToken需要在程序里面用代码来解决。首先注册远程推送通知，通过UIApllication的代理方法获取，代码如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([[[<span class="built_in">UIDevice</span> currentDevice] systemVersion] floatValue] &gt;= <span class="number">8.0</span>) &#123;</span><br><span class="line">   <span class="built_in">UIUserNotificationType</span> myTypes = <span class="built_in">UIRemoteNotificationTypeBadge</span> | <span class="built_in">UIRemoteNotificationTypeAlert</span> | <span class="built_in">UIRemoteNotificationTypeSound</span>;</span><br><span class="line">   <span class="built_in">UIUserNotificationSettings</span> *settings = [<span class="built_in">UIUserNotificationSettings</span> settingsForTypes:myTypes categories:<span class="literal">nil</span>];</span><br><span class="line">   [[<span class="built_in">UIApplication</span> sharedApplication] registerUserNotificationSettings:settings];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">UIRemoteNotificationType</span> myTypes = <span class="built_in">UIRemoteNotificationTypeBadge</span>|<span class="built_in">UIRemoteNotificationTypeAlert</span>|<span class="built_in">UIRemoteNotificationTypeSound</span>;</span><br><span class="line">    [[<span class="built_in">UIApplication</span> sharedApplication] registerForRemoteNotificationTypes:myTypes];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：在iOS8以后还要添加下面的方法</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#ifdef __IPHONE_8_0</span></span><br><span class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application didRegisterUserNotificationSettings:(<span class="built_in">UIUserNotificationSettings</span> *)notificationSettings&#123;</span><br><span class="line">    [application registerForRemoteNotifications];</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#endif</span></span><br></pre></td></tr></table></figure>
+<p>注册成功以后通过UIApplication的代理方法获取deviceToken。获取deviceToken的格式是这样的：<code>75e84eed c0451b39 5d8eec91 03154347 3ad56aee 97f8f565 9f027842 b78f8c77</code>,并且要注意把deviceToken给后台的时候要去掉两边的尖括号和中间的空格。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application didRegisterForRemoteNotificationsWithDeviceToken:(<span class="built_in">NSData</span> *)deviceToken&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"deviceToken:%@"</span>,deviceToken);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是如果注册远程通知失败后会调用下面的代理方法。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application didFailToRegisterForRemoteNotificationsWithError:(<span class="built_in">NSError</span> *)error&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"注册失败，错误是：%@"</span>,error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序正在使用或者退出的状态下，都会调用UIApplication的代理方法进行处理，该方法如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application didReceiveRemoteNotification:(<span class="built_in">NSDictionary</span> *)userInfo&#123;</span><br><span class="line">	<span class="comment">//处理通知...</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Receive remote notification : %@"</span>,userInfo);</span><br><span class="line">    application.applicationIconBadgeNumber = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="推送远程消息"><a href="#推送远程消息" class="headerlink" title="推送远程消息"></a>推送远程消息</h2><p>如果写demo的话，可以用<a href="https://github.com/shaojiankui/SmartPush" target="_blank" rel="external">SmartPush</a>进行模拟测试。想了解SmartPush的详细使用请移步到<a href="http://www.jianshu.com/p/23b745f8a980" target="_blank" rel="external">使用SmartPush进行iOS远程推送测试</a>。如果你会Python的话，你可以参考一下这个<a href="https://github.com/zhangfeidev/iOSTools/tree/master/pushPythonCode" target="_blank" rel="external">代码</a>来推送消息。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>关于推送流程可以<a href="https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html" target="_blank" rel="external">参考苹果官方文档</a>,那里有详细的流程解释。</li>
+<li>在进行推送处理时要注意点击程序图标进入程序和点击消息进入程序是不同的，前者不会调用代理方法，需要从<code>didFinishLaunchingWithOptions:</code>方法的参数`launchOptions进行判断处理。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag">#笔记</a>
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/14/从不可变的NSString和可变的NSMultableString谈起之const/" rel="next" title="从不可变的NSString谈起之const">
+                <i class="fa fa-chevron-left"></i> 从不可变的NSString谈起之const
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/23/关于扫一扫，是时候放弃第三方库了/" rel="prev" title="关于扫一扫，是时候放弃第三方了!">
+                关于扫一扫，是时候放弃第三方了! <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/10/12/推送/"
+     data-title="iOS的本地推送和远程推送"
+     data-content=""
+     data-url="zhangfei.tk/2015/10/12/推送/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/10/12/推送/"
+           data-title="iOS的本地推送和远程推送" data-url="zhangfei.tk/2015/10/12/推送/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.png"
+               alt="小飞" />
+          <p class="site-author-name" itemprop="name">小飞</p>
+          <p class="site-description motion-element" itemprop="description">张飞的技术博客，专注移动开发，欢迎交流！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhangfeidev" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/520513453/home?wvr=5" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">Links</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.superqq.com" target="_blank">刚刚在线</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于推送"><span class="nav-number">1.</span> <span class="nav-text">关于推送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地推送"><span class="nav-number">2.</span> <span class="nav-text">本地推送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程推送"><span class="nav-number">3.</span> <span class="nav-text">远程推送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送远程消息"><span class="nav-number">4.</span> <span class="nav-text">推送远程消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小飞</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangfeidev"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sYRIjCXYRTf3QBLYmsMj57xI-gzGzoHsz", "s970KBAbF70E5GmVK8yN9Buz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

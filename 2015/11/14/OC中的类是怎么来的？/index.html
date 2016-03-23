@@ -1,0 +1,938 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="笔记,Objective-C," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="我们都知道OC是在C语言的基础上增加了面向对象的编程特性。我们知道C语言并没有面向对象中的类的概念。细心的小伙伴会发现，C语言的结构体和类长得有点像。难道OC中的类和C语言的结构体有渊源？是的，你没有猜错，OC是一门动态语言，有一套运行时机制，会把OC中的类动态构造为C语言的结构体，不信？且往下看。Objective-C类是由Class类型来表示的。在objc.h中可以找到OC中类的定义。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC中的类是怎么来的？">
+<meta property="og:url" content="zhangfei.tk/2015/11/14/OC中的类是怎么来的？/index.html">
+<meta property="og:site_name" content="张飞的技术博客">
+<meta property="og:description" content="我们都知道OC是在C语言的基础上增加了面向对象的编程特性。我们知道C语言并没有面向对象中的类的概念。细心的小伙伴会发现，C语言的结构体和类长得有点像。难道OC中的类和C语言的结构体有渊源？是的，你没有猜错，OC是一门动态语言，有一套运行时机制，会把OC中的类动态构造为C语言的结构体，不信？且往下看。Objective-C类是由Class类型来表示的。在objc.h中可以找到OC中类的定义。">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1ey7veld0soj205k05l74a.jpg">
+<meta property="og:updated_time" content="2016-03-23T04:59:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OC中的类是怎么来的？">
+<meta name="twitter:description" content="我们都知道OC是在C语言的基础上增加了面向对象的编程特性。我们知道C语言并没有面向对象中的类的概念。细心的小伙伴会发现，C语言的结构体和类长得有点像。难道OC中的类和C语言的结构体有渊源？是的，你没有猜错，OC是一门动态语言，有一套运行时机制，会把OC中的类动态构造为C语言的结构体，不信？且往下看。Objective-C类是由Class类型来表示的。在objc.h中可以找到OC中类的定义。">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1ey7veld0soj205k05l74a.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> OC中的类是怎么来的？ | 张飞的技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-64177819-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?88f14784f52b40a5e212d560afbe9da4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">张飞的技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一枚专注与移动开发的IT文艺青年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                OC中的类是怎么来的？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-14T00:00:00+08:00" content="2015-11-14">
+              2015-11-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/14/OC中的类是怎么来的？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/14/OC中的类是怎么来的？/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/11/14/OC中的类是怎么来的？/" class="leancloud_visitors" data-flag-title="OC中的类是怎么来的？">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们都知道OC是在C语言的基础上增加了面向对象的编程特性。我们知道C语言并没有面向对象中的类的概念。细心的小伙伴会发现，C语言的结构体和类长得有点像。难道OC中的类和C语言的结构体有渊源？是的，你没有猜错，OC是一门动态语言，有一套运行时机制，会把OC中的类动态构造为C语言的结构体，不信？且往下看。Objective-C类是由Class类型来表示的。在<code>objc.h</code>中可以找到OC中类的定义。</p>
+<a id="more"></a>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// An opaque type that represents an Objective-C class.</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> objc_class *Class;</span><br></pre></td></tr></table></figure>
+<p>从这里可以看出来OC中的类其实是C语言中的一个结构体指针，它指向了<code>objc_class</code>这个结构体。进一步跟踪，在<code>runtime.h</code>可以看到<code>objc_class</code>的定义，如下(根据我自己的理解添加了注释)：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> objc_class &#123;</span><br><span class="line">    Class isa  OBJC_ISA_<span class="built_in">AVAILABILITY</span>;  <span class="comment">//指向自己的真实类型</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#if !__OBJC2__</span></span><br><span class="line">    Class super_class                        OBJC2_UN<span class="built_in">AVAILABLE</span>;  <span class="comment">//指向父类</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *name                         OBJC2_UN<span class="built_in">AVAILABLE</span>;  <span class="comment">//类名</span></span><br><span class="line">    <span class="keyword">long</span> version                             OBJC2_UN<span class="built_in">AVAILABLE</span>;  <span class="comment">//类的版本</span></span><br><span class="line">    <span class="keyword">long</span> info                                OBJC2_UN<span class="built_in">AVAILABLE</span>;  <span class="comment">//类的信息</span></span><br><span class="line">    <span class="keyword">long</span> instance_size                       OBJC2_UN<span class="built_in">AVAILABLE</span>;  <span class="comment">//类实例大小</span></span><br><span class="line">    <span class="keyword">struct</span> objc_ivar_list *ivars             OBJC2_UN<span class="built_in">AVAILABLE</span>;  <span class="comment">//类的成员变量链表</span></span><br><span class="line">    <span class="keyword">struct</span> objc_method_list **methodLists    OBJC2_UN<span class="built_in">AVAILABLE</span>;  <span class="comment">//类的方法定义链表</span></span><br><span class="line">    <span class="keyword">struct</span> objc_cache *cache                 OBJC2_UN<span class="built_in">AVAILABLE</span>;  <span class="comment">//方法缓存</span></span><br><span class="line">    <span class="keyword">struct</span> objc_protocol_list *protocols     OBJC2_UN<span class="built_in">AVAILABLE</span>;  <span class="comment">//类的协议链表</span></span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line"></span><br><span class="line">&#125; OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br></pre></td></tr></table></figure>
+<p>详细看一下结构体的成员变量是干啥的吧。</p>
+<ul>
+<li><code>isa</code>：每一个对象都有一个叫isa的指针类型的成员变量，它指向该对象的实际类型(比如有一个Person类，他有一个p1的实例对象，那么这个p1的成员变量isa指向的就是Person类)，需要注意的是在Objective-C中，所有的类自身也是一个对象，这个对象的Class里面也有一个isa指针，它指向metaClass(元类)。</li>
+<li><code>super_class</code>:和isa一样，也是一个指针类型的，它指向了自己的父类。那NSObject类的super_class指向什么呢？答案是指向NULL。</li>
+<li><code>name</code>:这个是记录类的名字用的。</li>
+<li><code>version</code>:记录类的版本用的。这对于对象的序列化非常有用，它可是让我们识别出不同类定义版本中实例变量布局的改变。</li>
+<li><code>info</code>:类的信息，主要作用是在运行期间做一些标识。</li>
+<li><code>instance_size</code>:记录类实例对象的占用空间的大小。</li>
+<li><code>ivars</code>:类的成员变量不可能总是一个，所以类的成员变量就用了一个链表来记录。我们可以看到这个<code>objc_ivar_list</code>是一个结构体，在<code>runtime.h</code>的1655行的位置就能找到<code>objc_ivar_list</code>这个结构体的声明：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> objc_ivar_list &#123;</span><br><span class="line">    <span class="keyword">int</span> ivar_count                                           OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line"><span class="meta">#ifdef __LP64__</span></span><br><span class="line">    <span class="keyword">int</span> space                                                OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line">    <span class="comment">/* variable length structure */</span></span><br><span class="line">    <span class="keyword">struct</span> objc_ivar ivar_list[<span class="number">1</span>]                            OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>objc_ivar_list</code>这个结构体里面还有一个<code>objc_ivar</code>的结构体，它的声明就<code>objc_ivar_list</code>这个结构体的上面，声明是这个样子的：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> objc_ivar &#123;</span><br><span class="line">    <span class="keyword">char</span> *ivar_name                                          OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">    <span class="keyword">char</span> *ivar_type                                          OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">    <span class="keyword">int</span> ivar_offset                                          OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line"><span class="meta">#ifdef __LP64__</span></span><br><span class="line">    <span class="keyword">int</span> space                                                OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>objc_method_list</code>：类的方法也和成员变量一个道理，因此也是用一个链表来记录的。也许你会疑惑为什么<code>objc_method_list</code>是指针的指针，先看一看它的结构体实现吧，位置是<code>runtime.h</code>的1671行：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> objc_method_list &#123;</span><br><span class="line">    <span class="keyword">struct</span> objc_method_list *obsolete                        OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> method_count                                         OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line"><span class="meta">#ifdef __LP64__</span></span><br><span class="line">    <span class="keyword">int</span> space                                                OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line">    <span class="comment">/* variable length structure */</span></span><br><span class="line">    <span class="keyword">struct</span> objc_method method_list[<span class="number">1</span>]                        OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个结构体的声明里面可以看到里面有一个叫<code>objc_method_list</code>的结构体指针，这样我们不就不难理解它是一个指针的指针了。这里面的结构体<code>objc_method</code>的定义如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> objc_method &#123;</span><br><span class="line">    SEL method_name                                          OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">    <span class="keyword">char</span> *method_types                                       OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">    IMP method_imp                                           OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>cache</code>:cache是用来记录方法调用的，每当调用方法的时候就先到这里查一下这个方法有没有被调用过。如果被调用过就直接想这个方法发送消息，如果没有才去<code>methodLists</code>里面去查找。同样是在<code>runtime.h</code>中我们找到结构体<code>objc_cache</code>的定义：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> objc_cache &#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> mask <span class="comment">/* total = mask + 1 */</span>                 OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> occupied                                    OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">    Method buckets[<span class="number">1</span>]                                        OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>也许你会发现一个<code>Method</code>的类，其实他的本质就是上面的<code>objc_method</code>这个结构体。</p>
+<ul>
+<li><code>protocols</code>：和方法链表，成员变量一样。用来记录协议的链表。它的定义如下：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> objc_protocol_list &#123;</span><br><span class="line">    <span class="keyword">struct</span> objc_protocol_list *next;</span><br><span class="line">    <span class="keyword">long</span> count;</span><br><span class="line">    Protocol *list[<span class="number">1</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这下明白了吧，OC的类和C语言还有这么一层关系，当然这都归功于OC的Runtime机制。</p>
+<p>在面向对象编程中不仅有类的概念，还有实例对象的概念，既然类与C语言的结构体有着千丝万缕的关系，那么，类对象想必也和C语言撇不开关系吧。是的，有什么关系呢？往下看！</p>
+<p>上面说了类是怎么构造的，那你不禁会问类对象是怎么构造的呢？其实就在<code>objc.h</code>文件里声明Class结构体下面就可以发现这样的代码：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// Represents an instance of a class.</span></span><br><span class="line"><span class="keyword">struct</span> objc_object &#123;</span><br><span class="line">    Class isa  OBJC_ISA_<span class="built_in">AVAILABILITY</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>从注释中不难看出，结构体<code>objc_object</code>表示的是类对象，可以看到，这个结构体只有一个成员变量，即指向其类的isa指针。这样，当我们向一个Objective-C对象发送消息时，运行时库会根据实例对象的isa指针找到这个实例对象所属的类。Runtime库会在类的方法列表及父类的方法列表中去寻找与消息对应的selector指向的方法。找到后即运行这个方法。也就是是说当我们创建一个特定类的实例对象时，分配的内存包含一个objc_object数据结构，然后是类的实例变量的数据。</p>
+<h4 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h4><p>上面讲的都要归功于牛逼的Runtime，那么Runtime有什么🐂👃的呢？有兴趣就看我的下一片文章。最后大家不要忘了，如果我的文章对你有帮助，你愿意请我喝杯茶的话，请用支付宝扫一扫下面的二维码随意打赏。祝大家玩得愉快！</p>
+<center><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1ey7veld0soj205k05l74a.jpg" alt=""></center>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag">#笔记</a>
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/08/使用Reveal调试你的iOS程序/" rel="next" title="使用Reveal调试你的iOS程序">
+                <i class="fa fa-chevron-left"></i> 使用Reveal调试你的iOS程序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/15/你要理解的Runtime知识点/" rel="prev" title="你要理解的Runtime知识点">
+                你要理解的Runtime知识点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/11/14/OC中的类是怎么来的？/"
+     data-title="OC中的类是怎么来的？"
+     data-content=""
+     data-url="zhangfei.tk/2015/11/14/OC中的类是怎么来的？/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/14/OC中的类是怎么来的？/"
+           data-title="OC中的类是怎么来的？" data-url="zhangfei.tk/2015/11/14/OC中的类是怎么来的？/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.png"
+               alt="小飞" />
+          <p class="site-author-name" itemprop="name">小飞</p>
+          <p class="site-description motion-element" itemprop="description">张飞的技术博客，专注移动开发，欢迎交流！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhangfeidev" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/520513453/home?wvr=5" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">Links</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.superqq.com" target="_blank">刚刚在线</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#结尾"><span class="nav-number">1.</span> <span class="nav-text">结尾</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小飞</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangfeidev"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sYRIjCXYRTf3QBLYmsMj57xI-gzGzoHsz", "s970KBAbF70E5GmVK8yN9Buz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
