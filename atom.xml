@@ -132,7 +132,7 @@
     <link href="zhangfei.tk/2015/12/17/%E8%AF%BB%E3%80%8A%E8%8B%B9%E6%9E%9CCocoa%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
     <id>zhangfei.tk/2015/12/17/读《苹果Cocoa编码规范》笔记/</id>
     <published>2015-12-17T03:11:11.000Z</published>
-    <updated>2016-03-23T05:06:16.000Z</updated>
+    <updated>2016-03-23T06:56:19.000Z</updated>
     
     <content type="html">&lt;p&gt;为什么要有编码规范这么一说呢？你设想一下如果张三写代码一个风格，李四一个风格，当张三去看李四的时候他会极度的不舒服，反过来李四去看张三的代码的时候也会感觉非常的糟糕。所以他们两个人遵循同一个规则的时候，再去看对方的代码的时候就不会不适应，因此指定一个大家都遵循的代码编程风格就至关重要了。对于iOS开发，苹果官方就制定了一套编码规范。作为iOS开发者遵循苹果制定的编码规范写代码，那么在看苹果的官方代码的时候就觉得很轻松了。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -602,9 +602,9 @@
       <category term="iOS" scheme="zhangfei.tk/categories/iOS/"/>
     
     
-      <category term="笔记" scheme="zhangfei.tk/tags/%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="工具" scheme="zhangfei.tk/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="笔记" scheme="zhangfei.tk/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -1186,7 +1186,7 @@
     <link href="zhangfei.tk/2015/06/02/MacTools/"/>
     <id>zhangfei.tk/2015/06/02/MacTools/</id>
     <published>2015-06-01T16:00:00.000Z</published>
-    <updated>2016-03-03T07:37:16.000Z</updated>
+    <updated>2016-03-24T13:29:59.000Z</updated>
     
     <content type="html">&lt;p&gt;我的Mac电脑工具&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;生活相关&quot;&gt;&lt;a href=&quot;#生活相关&quot; class=&quot;headerlink&quot; title=&quot;生活相关&quot;&gt;&lt;/a&gt;生活相关&lt;/h2&gt;&lt;ul&gt;
@@ -1233,6 +1233,7 @@
 &lt;li&gt;&lt;code&gt;XMind&lt;/code&gt;另一款优秀的思维导图软件。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Dash&lt;/code&gt;文档阅读器，里面有各种语言的文档，win和linux下类似的是zeal。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Charles&lt;/code&gt;抓包就靠它了。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Hopper&lt;/code&gt;反编译工具。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;其他&quot;&gt;&lt;a href=&quot;#其他&quot; class=&quot;headerlink&quot; title=&quot;其他&quot;&gt;&lt;/a&gt;其他&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;一个下载Mac软件的好去处，&lt;a href=&quot;http://www.pc6.com/mac/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点击这里&lt;/a&gt;。&lt;/li&gt;

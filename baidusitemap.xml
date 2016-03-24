@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>zhangfei.tk/2015/06/02/MacTools/</loc>
+    <lastmod>2016-03-24T13:29:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>我在Mac上使用的工具</title>
+        <pubTime>2015-06-01T16:00:00.000Z</pubTime>
+        
+        <tag>工具</tag>
+         
+        <tag>Mac</tag>
+         
+         
+           
+             
+              <breadCrumb title="Mac" url="zhangfei.tk/categories/Mac/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>zhangfei.tk/2015/12/17/%E8%AF%BB%E3%80%8A%E8%8B%B9%E6%9E%9CCocoa%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%E3%80%8B%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2016-03-23T05:06:16.000Z</lastmod>
+    <lastmod>2016-03-23T06:56:19.000Z</lastmod>
     <data>
         <display>
         <title>读《苹果Cocoa编码规范》笔记</title>
@@ -99,9 +121,9 @@
         <title>使用Reveal调试你的iOS程序</title>
         <pubTime>2015-11-08T03:11:11.000Z</pubTime>
         
-        <tag>笔记</tag>
-         
         <tag>工具</tag>
+         
+        <tag>笔记</tag>
          
          
            
@@ -350,28 +372,6 @@
            
              
               <breadCrumb title="iOS" url="zhangfei.tk/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>zhangfei.tk/2015/06/02/MacTools/</loc>
-    <lastmod>2016-03-03T07:37:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>我在Mac上使用的工具</title>
-        <pubTime>2015-06-01T16:00:00.000Z</pubTime>
-        
-        <tag>工具</tag>
-         
-        <tag>Mac</tag>
-         
-         
-           
-             
-              <breadCrumb title="Mac" url="zhangfei.tk/categories/Mac/"/>
           
         </display>
     </data>
