@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>zhangfei.tk/2015/08/29/iOS%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2016-03-25T06:57:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS中的多线程</title>
+        <pubTime>2015-08-29T03:11:11.000Z</pubTime>
+        
+        <tag>笔记</tag>
+         
+        <tag>Objective-C</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="zhangfei.tk/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>zhangfei.tk/2015/06/02/MacTools/</loc>
     <lastmod>2016-03-24T13:29:59.000Z</lastmod>
     <data>
@@ -121,9 +143,9 @@
         <title>使用Reveal调试你的iOS程序</title>
         <pubTime>2015-11-08T03:11:11.000Z</pubTime>
         
-        <tag>工具</tag>
-         
         <tag>笔记</tag>
+         
+        <tag>工具</tag>
          
          
            
@@ -276,28 +298,6 @@
         <tag>笔记</tag>
          
         <tag>OC</tag>
-         
-         
-           
-             
-              <breadCrumb title="iOS" url="zhangfei.tk/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>zhangfei.tk/2015/08/29/iOS%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
-    <lastmod>2016-03-23T04:55:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS中的多线程</title>
-        <pubTime>2015-08-29T03:11:11.000Z</pubTime>
-        
-        <tag>笔记</tag>
-         
-        <tag>Objective-C</tag>
          
          
            
