@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="随笔," />
+  <meta name="keywords" content="笔记," />
 
 
 
@@ -57,24 +57,33 @@
 
 
 
-<meta name="description" content="一年就要过去，新的一年又将来临。眨眼间，一个年头就完了。这一年，我差不多结束了课堂的日子；这一年，我试着踏入真正的社会生活；这一年，从学校的闲散日子变成了朝九晚五的生活。跌跌撞撞，再过十几天就22了，也老大不小了，学着总结一下这一年。">
+<meta name="description" content="在平时开发的时候也经常用到Charles这款软件，它的功能功能非常的强大，不仅仅在Mac上可以用，并且还可以在Windows和Linux下使用。我在iOS开发的工程中使用，就分享一下在Mac上的使用心得吧！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记2015">
-<meta property="og:url" content="zhangfei.tk/2015/12/31/记2015/index.html">
+<meta property="og:title" content="抓包工具Charles的使用心得">
+<meta property="og:url" content="zhangfei.tk/2016/02/06/抓包工具Charles的使用心得/index.html">
 <meta property="og:site_name" content="张飞的技术博客">
-<meta property="og:description" content="一年就要过去，新的一年又将来临。眨眼间，一个年头就完了。这一年，我差不多结束了课堂的日子；这一年，我试着踏入真正的社会生活；这一年，从学校的闲散日子变成了朝九晚五的生活。跌跌撞撞，再过十几天就22了，也老大不小了，学着总结一下这一年。">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1ezj4lo5t0gj21kw0w07ix.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/cfaa8811jw1ezjyc8jl56j20x718gncy.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/cfaa8811jw1ezjyc7iq8mj20qo0jr446.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/cfaa8811jw1ezjyw0ecj0j21kw16hto4.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/cfaa8811jw1ezjz6pqm00j21kw16h7wh.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1ezjyyvqb3pj20e20irdh5.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/cfaa8811jw1ezk00wg3osj20hs0qognt.jpg">
-<meta property="og:updated_time" content="2016-03-03T07:35:24.000Z">
+<meta property="og:description" content="在平时开发的时候也经常用到Charles这款软件，它的功能功能非常的强大，不仅仅在Mac上可以用，并且还可以在Windows和Linux下使用。我在iOS开发的工程中使用，就分享一下在Mac上的使用心得吧！">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/cfaa8811jw1f2anux8xirj21kw0zkwij.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anvkphh3j21kw0zkaiq.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anubwqf2j21kw0zqn71.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anuf5fbuj21kw1064b9.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anuauw7dj214r0oj1b8.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anva8cl6j212q0qkteo.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anuv6dlbj217c11iag8.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anvbeml0j218w0xywkz.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2ao4mpvt0j21k214aqc9.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2antuwwxgj20z40h2aes.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anujcpptj20v20r2dkk.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/cfaa8811jw1f2anvsjkfij21kw0rd7ew.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anu9p7jpj21ia0zeqhn.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anujqp26j20zc10ejx7.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anv3vnr3j21kw0y218e.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anvhcu1kj21kw0y0ar3.jpg">
+<meta property="og:updated_time" content="2016-03-26T15:21:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记2015">
-<meta name="twitter:description" content="一年就要过去，新的一年又将来临。眨眼间，一个年头就完了。这一年，我差不多结束了课堂的日子；这一年，我试着踏入真正的社会生活；这一年，从学校的闲散日子变成了朝九晚五的生活。跌跌撞撞，再过十几天就22了，也老大不小了，学着总结一下这一年。">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1ezj4lo5t0gj21kw0w07ix.jpg">
+<meta name="twitter:title" content="抓包工具Charles的使用心得">
+<meta name="twitter:description" content="在平时开发的时候也经常用到Charles这款软件，它的功能功能非常的强大，不仅仅在Mac上可以用，并且还可以在Windows和Linux下使用。我在iOS开发的工程中使用，就分享一下在Mac上的使用心得吧！">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/cfaa8811jw1f2anux8xirj21kw0zkwij.jpg">
 
 
 
@@ -92,7 +101,7 @@
   };
 </script>
 
-  <title> 记2015 | 张飞的技术博客 </title>
+  <title> 抓包工具Charles的使用心得 | 张飞的技术博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -231,7 +240,7 @@
             
             
               
-                记2015
+                抓包工具Charles的使用心得
               
             
           </h1>
@@ -243,8 +252,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-31T11:11:11+08:00" content="2015-12-31">
-              2015-12-31
+            <time itemprop="dateCreated" datetime="2016-02-06T00:00:00+08:00" content="2016-02-06">
+              2016-02-06
             </time>
           </span>
 
@@ -257,8 +266,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活碎碎念/" itemprop="url" rel="index">
-                    <span itemprop="name">生活碎碎念</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -273,8 +282,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/31/记2015/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/31/记2015/" itemprop="commentsCount"></span>
+                <a href="/2016/02/06/抓包工具Charles的使用心得/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/06/抓包工具Charles的使用心得/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -284,7 +293,7 @@
 
           
           
-             <span id="/2015/12/31/记2015/" class="leancloud_visitors" data-flag-title="记2015">
+             <span id="/2016/02/06/抓包工具Charles的使用心得/" class="leancloud_visitors" data-flag-title="抓包工具Charles的使用心得">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -305,34 +314,39 @@
       
 
       
-        <p>一年就要过去，新的一年又将来临。眨眼间，一个年头就完了。这一年，我差不多结束了课堂的日子；这一年，我试着踏入真正的社会生活；这一年，从学校的闲散日子变成了朝九晚五的生活。跌跌撞撞，再过十几天就22了，也老大不小了，学着总结一下这一年。</p>
-<a id="more"></a>
-<h3 id="大三下学期，意味这是大学最后的课堂时间"><a href="#大三下学期，意味这是大学最后的课堂时间" class="headerlink" title="大三下学期，意味这是大学最后的课堂时间"></a><center>大三下学期，意味这是大学最后的课堂时间</center></h3><p>&nbsp; &nbsp; &nbsp;专业有一个非常好的政策，允许学习优秀和专业技能过硬的同学大四一年顶岗实习。这个政策非常值得点赞!但是这样也意味着就要和大学的课堂生活说拜拜了。</p>
-<center><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1ezj4lo5t0gj21kw0w07ix.jpg" alt=""></center><br>&nbsp; &nbsp; &nbsp;要离开校园，就必须的了结许多事。于是本该大四上的课，一下子提前了。留给我们的是满满的课表和许多的课设。<br><center><img src="http://ww1.sinaimg.cn/large/cfaa8811jw1ezjyc8jl56j20x718gncy.jpg" alt="摄像课设，都是满满的回忆啊"></center><br>&nbsp; &nbsp; &nbsp;在学生会带了三年，没做出什么了不起的事情，但是结识很多小伙伴。从部员到部长，一晃就是三年，说长不长，说短不短，从小学到高中，在社团学生会总有我的影子，成长了，也该告别了。<br><center><img src="http://ww1.sinaimg.cn/large/cfaa8811jw1ezjyc7iq8mj20qo0jr446.jpg" alt=""></center>
-
-<h4 id="五月份，去看看我的好兄弟"><a href="#五月份，去看看我的好兄弟" class="headerlink" title="五月份，去看看我的好兄弟"></a><center>五月份，去看看我的好兄弟</center></h4><p>&nbsp; &nbsp; &nbsp;从西南到东北，上学做的火车走遍了大半个中国。当初不知道怎么想的，跑到这么远的地方上大学。没想到的是高中的一哥们也跑到了这么远的地方。想着当初高考没考好，自己跑到网吧填的自愿，除了我之外谁都不知道我会填这里的志愿。没想到，好哥们也到了离我不远的北华大学念书。说来惭愧，来东北三年都没有去看过他，他倒是来看过我几次。在离开之前，怎么也得去看望一下这个在吉林松花江畔读大学的好哥们。</p>
-<center><img src="http://ww1.sinaimg.cn/large/cfaa8811jw1ezjyw0ecj0j21kw16hto4.jpg" alt="松花江"></center>
-
-<h4 id="七月份，开始尝试北漂"><a href="#七月份，开始尝试北漂" class="headerlink" title="七月份，开始尝试北漂"></a><center>七月份，开始尝试北漂</center></h4><p>&nbsp; &nbsp; &nbsp;七月份，阳光正好，北京的天空还是蓝蓝的。在学长学姐的大力帮助下，开始了北漂之旅。</p>
-<center><img src="http://ww4.sinaimg.cn/large/cfaa8811jw1ezjz6pqm00j21kw16h7wh.jpg" alt="开始帝都的生活了"></center>
-
-<h4 id="新的挑战，找工作"><a href="#新的挑战，找工作" class="headerlink" title="新的挑战，找工作"></a><center>新的挑战，找工作</center></h4><p>&nbsp; &nbsp; &nbsp;招聘网上的工作岗位倒是不少，可是过了2周，投出去的简历就像扔进大海的石头。这才体会到社会对文凭的偏见，要是可以从来，我会重来一次高考。说多了都是泪，也是废话。既来之，则安之。没有过不去的坎。半个月过去了，终于收到了第一份面试邀请。可是激动地我却在人生的第一次面试就遭到了重创。生活任然要继续，接着第二次，第三次。过了二十天左右，拿到了三家公司的实习生资格。遵循老师的教诲，来帝都是来学习的，只要养活自己就行了，于是选择了待遇最低的一家公司。在这里，我遇到了从小就崇拜的李开复老师。也遇到了一群朝气的同事和年轻的老板。就这样开始了我人生的第一份工作。</p>
-<center><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1ezjyyvqb3pj20e20irdh5.jpg" alt="第一份工作的地方，创新工场"></center>
-
-<h4 id="进京几个月，却住了三个地方"><a href="#进京几个月，却住了三个地方" class="headerlink" title="进京几个月，却住了三个地方"></a><center>进京几个月，却住了三个地方</center></h4><p>&nbsp; &nbsp; &nbsp;在好友的推荐下，把工作换到了京东，创新工场都是小团队，小团队有小团队的好。可是让我感觉不到提升，于是毅然的来到了京东。可是比较惨的是，京东在东南边。与我住的地方完全是对立的好不好，没办法，选择了搬家，从沙河搬到了亦庄。对于我这种刚出来的人来说，短时间内搬家是损失比较大的。都知道北京房价高，相对应的租房子的价格也不矮。没住满3个月，押金什么的就别想退了，于是乎，上班两个月的我又一分不剩。来到京东和好友在公司旁边合租了一间房，就算2人一个卧室一人都得一千多。哎，什么都别想了，活下去就行了。就这样在京东一直工作到了现在。在公司旁边住了三个月，由于种种原因，又搬到了旧宫。这下子算稳定了。稳定倒是稳定了，可是一不小心就到了年尾。</p>
-<center><img src="http://ww1.sinaimg.cn/large/cfaa8811jw1ezk00wg3osj20hs0qognt.jpg" alt="成为京东的一份子"></center>
-
-<h4 id="展望一下明年"><a href="#展望一下明年" class="headerlink" title="展望一下明年"></a><center>展望一下明年</center></h4><p>年复一年，不能让时间停下脚步，就让我们去追赶吧！给明年一个目标，不要让自己随时间衰老自己的那颗心。</p>
-<ul>
-<li>顺利毕业</li>
-<li>加强专业技能修养</li>
-<li>有一份满意的装备</li>
-<li>找一份满意的工作</li>
-<li>让女友和他的家人放心我是个不错的小伙</li>
-<li>多回家看看父母和爷爷奶奶</li>
+        <p>在平时开发的时候也经常用到Charles这款软件，它的功能功能非常的强大，不仅仅在Mac上可以用，并且还可以在Windows和Linux下使用。我在iOS开发的工程中使用，就分享一下在Mac上的使用心得吧！<br><a id="more"></a></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Charles其实是一款代理服务器，通过成为电脑或者浏览器的代理，然后截取请求和请求结果达到分析抓包的目的。该软件是用Java写的，能够在Windows，Mac，Linux上使用。开发iOS都在Mac系统上吧，安装Charles的时候要先装好Java环境。这么好的软件不是免费的，<a href="http://www.charlesproxy.com" target="_blank" rel="external">官网</a>要好几十刀呢，我这里有一个Mac上的破解版，<a href="http://pan.baidu.com/s/1qXoCiwW" target="_blank" rel="external">点击这里下载</a>，当然不是最新版的。如果你想体验最新版，Charles是提供试用的。</p>
+<h3 id="Charles主要功能"><a href="#Charles主要功能" class="headerlink" title="Charles主要功能"></a>Charles主要功能</h3><ul>
+<li>支持SSL代理。可以截取分析SSL的请求。</li>
+<li>支持流量控制。可以模拟慢速网络以及等待时间（latency）较长的请求。</li>
+<li>支持AJAX调试。可以自动将json或xml数据格式化，方便查看。</li>
+<li>支持AMF调试。可以将Flash Remoting 或 Flex Remoting信息格式化，方便查看。</li>
+<li>支持重发网络请求，方便后端调试。</li>
+<li>支持修改网络请求参数。</li>
+<li>支持网络请求的截获并动态修改。</li>
+<li>检查HTML，CSS和RSS内容是否符合W3C标准。</li>
 </ul>
-<center><h1>最后，祝大家新年快乐！</h1></center>
-
+<h3 id="开始抓包"><a href="#开始抓包" class="headerlink" title="开始抓包"></a>开始抓包</h3><p>先看一下Charles的庐山真面目吧！<br><img src="http://ww1.sinaimg.cn/large/cfaa8811jw1f2anux8xirj21kw0zkwij.jpg" alt=""></p>
+<p>接下来要把电脑设置为代理<br><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anvkphh3j21kw0zkaiq.jpg" alt=""></p>
+<p>这样你会发现，你通过浏览器请求的网址都会出现在这里，iOS模拟器的所有的网络请求也会出现在这里。点击某一个网址后，你会发现右边会出现这个网址请求的大概信息，点击具体的请求后会出现request和response等信息<br><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anubwqf2j21kw0zqn71.jpg" alt=""></p>
+<p>如果你发现返回的是乱码，首先看是在http请求还是https请求，如果是http请求，那么应该就是返回来的中文乱码,解决方案是找到该软件显示包内容，Contents目录下的info.plist，打开文件找到<code>vmoption</code>,添加<code>-Dfile.encoding=UTF-8</code>即可。<br><img src="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anuf5fbuj21kw1064b9.jpg" alt=""></p>
+<p>如果是https请求出现的乱码，如下图这种情况<br><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anuauw7dj214r0oj1b8.jpg" alt=""></p>
+<p>这时候你就需要安装Charles的CA证书了，首先到去 <a href="http://www.charlesproxy.com/ssl.zip" target="_blank" rel="external">http://www.charlesproxy.com/ssl.zip</a> 下载CA证书文件。双击crt文件，选择总是信任就可以了，当然如果要抓取iPhone设备上的HTTPS请求，需要在iPhone上也安装一个证书，在手机浏览器输入这个网址：<a href="http://charlesproxy.com/getssl" target="_blank" rel="external">http://charlesproxy.com/getssl</a> ，点击安装即可。然后你就可以告别那烦人的乱码，可以愉快地抓包了。</p>
+<h3 id="抓取真机上的包"><a href="#抓取真机上的包" class="headerlink" title="抓取真机上的包"></a>抓取真机上的包</h3><p> 抓取真机上的数据非常的简单，首先使手机和电脑在一个局域网内，不一定非要是一个ip段，只要是同一个路由器下就可以了。按照上面说的把证书安装好，然后找到电脑的IP，你可以选择在终端输入<code>ifconfig en0</code>来获取，也可以选择打开网络偏好设置来查看。</p>
+<p><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anva8cl6j212q0qkteo.jpg" alt="终端获取IP"></p>
+<p><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anuv6dlbj217c11iag8.jpg" alt="网络偏好设置查看IP"></p>
+<p>接下来打开Charles的代理设置：<code>Proxy-&gt;Proxy Settings</code>，设置一下端口号，默认的是8888，这个只要不和其他程序的冲突即可,并且勾选<code>Enable transparent HTTP proxying</code>。</p>
+<p><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anvbeml0j218w0xywkz.jpg" alt="端口号设置"><br>在手机上连接上和电脑在同一局域网的网络上设置HTTP代理。端口号就是刚刚在Charles上设置的那个。<br><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2ao4mpvt0j21k214aqc9.jpg" alt=""><br>然后在手机上随便打开一个网址，这是Charles会弹出一个框让你确认是否代理，点击allow就可以了，然后你就会在Charles上发现手机上的请求了。<br><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2antuwwxgj20z40h2aes.jpg" alt=""></p>
+<h3 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h3><p>在 Charles 的菜单栏选择 <code>Proxy-&gt;Recording Settings</code>，然后选择 <code>Include</code> 栏，选择<code>Add</code>，然后填入需要监控的协议，主机地址，端口号,这样就达到了过滤的目的。如下图：<br><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anujcpptj20v20r2dkk.jpg" alt=""><br>还有一种方法就是在一个网址上右击，选择<code>Focus</code>，然后其他的请求就会被放到一个叫Other Host的文件夹里面，这样也达到了过滤的目的。<br><img src="http://ww1.sinaimg.cn/large/cfaa8811jw1f2anvsjkfij21kw0rd7ew.jpg" alt=""></p>
+<h3 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h3><p>断点的功能搞开发不会不知道，在Charles发起一个请求的时候，我们是可以给某个请求打一个断点的，然后来观察或者修改请求或者返回的内容，但是在这过程中药注意请求的超时时间问题。要针对某一个请求设置断点，只需要在这个请求网址右击选择Breakpoints就可以断点某一个请求了。</p>
+<p><img src="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anu9p7jpj21ia0zeqhn.jpg" alt=""></p>
+<h3 id="模拟网速慢"><a href="#模拟网速慢" class="headerlink" title="模拟网速慢"></a>模拟网速慢</h3><p>有时候在开发的时候我们想要模拟一下网络慢的情况，这时候Charles他是可以帮助到你的，在<code>Proxy</code>-&gt;<code>Throttle Setting</code>，然后选择<code>Enable Throttling</code>，在<code>Throttle Preset</code>下选择网络类型即可，具体设置你可以自行拿捏。</p>
+<p><img src="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anujqp26j20zc10ejx7.jpg" alt=""></p>
+<h3 id="请求重定向"><a href="#请求重定向" class="headerlink" title="请求重定向"></a>请求重定向</h3><p>请求重定向的作用是什么呢？开发中一般都是测试环境，如果我们想对比一下和线上版本的区别的话，可以讲测试的请求重定向到正式环境下。在选择 <code>Tools</code>-&gt;<code>Map Remote下</code>：</p>
+<p><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anv3vnr3j21kw0y218e.jpg" alt=""></p>
+<h3 id="内容替换"><a href="#内容替换" class="headerlink" title="内容替换"></a>内容替换</h3><p>有时候我们会测一下请求的参数不同会带来不同的返回结果以测试是否达到业务需求，或者需要不同的返回结果来验证我们对数据的处理是否正确，这时候需要后台的同事配合，但是有了Charles，我们可以自己把控接口返回来的内容，比如数据的空与否，数据的长短等等。在<code>Tools</code>-&gt;<code>Rewrite Settings</code>下：</p>
+<p><img src="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anvhcu1kj21kw0y0ar3.jpg" alt=""></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>Charles还有一下其他的妙用。慢慢的去发掘吧！</p>
 
       
     </div>
@@ -347,7 +361,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/随笔/" rel="tag">#随笔</a>
+            <a href="/tags/笔记/" rel="tag">#笔记</a>
           
         </div>
       
@@ -356,17 +370,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/17/读《苹果Cocoa编码规范》笔记/" rel="next" title="读《苹果Cocoa编码规范》笔记">
-                <i class="fa fa-chevron-left"></i> 读《苹果Cocoa编码规范》笔记
+              <a href="/2016/01/10/聊聊iOS开发中的单元测试/" rel="next" title="聊聊iOS开发中的单元测试">
+                <i class="fa fa-chevron-left"></i> 聊聊iOS开发中的单元测试
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/10/聊聊iOS开发中的单元测试/" rel="prev" title="聊聊iOS开发中的单元测试">
-                聊聊iOS开发中的单元测试 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -381,10 +391,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/12/31/记2015/"
-     data-title="记2015"
+        <div class="ds-share flat" data-thread-key="2016/02/06/抓包工具Charles的使用心得/"
+     data-title="抓包工具Charles的使用心得"
      data-content=""
-     data-url="zhangfei.tk/2015/12/31/记2015/">
+     data-url="zhangfei.tk/2016/02/06/抓包工具Charles的使用心得/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -411,8 +421,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/31/记2015/"
-           data-title="记2015" data-url="zhangfei.tk/2015/12/31/记2015/">
+      <div class="ds-thread" data-thread-key="2016/02/06/抓包工具Charles的使用心得/"
+           data-title="抓包工具Charles的使用心得" data-url="zhangfei.tk/2016/02/06/抓包工具Charles的使用心得/">
       </div>
     
   </div>
@@ -535,7 +545,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#大三下学期，意味这是大学最后的课堂时间"><span class="nav-number">1.</span> <span class="nav-text">大三下学期，意味这是大学最后的课堂时间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#五月份，去看看我的好兄弟"><span class="nav-number">1.1.</span> <span class="nav-text">五月份，去看看我的好兄弟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七月份，开始尝试北漂"><span class="nav-number">1.2.</span> <span class="nav-text">七月份，开始尝试北漂</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新的挑战，找工作"><span class="nav-number">1.3.</span> <span class="nav-text">新的挑战，找工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进京几个月，却住了三个地方"><span class="nav-number">1.4.</span> <span class="nav-text">进京几个月，却住了三个地方</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#展望一下明年"><span class="nav-number">1.5.</span> <span class="nav-text">展望一下明年</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">最后，祝大家新年快乐！</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Charles主要功能"><span class="nav-number">2.</span> <span class="nav-text">Charles主要功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始抓包"><span class="nav-number">3.</span> <span class="nav-text">开始抓包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抓取真机上的包"><span class="nav-number">4.</span> <span class="nav-text">抓取真机上的包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤"><span class="nav-number">5.</span> <span class="nav-text">过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断点"><span class="nav-number">6.</span> <span class="nav-text">断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟网速慢"><span class="nav-number">7.</span> <span class="nav-text">模拟网速慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求重定向"><span class="nav-number">8.</span> <span class="nav-text">请求重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容替换"><span class="nav-number">9.</span> <span class="nav-text">内容替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">10.</span> <span class="nav-text">其他</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

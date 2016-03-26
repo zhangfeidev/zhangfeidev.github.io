@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="zhangfei.tk/"/>
-  <updated>2016-03-23T05:05:28.000Z</updated>
+  <updated>2016-03-26T15:21:28.000Z</updated>
   <id>zhangfei.tk/</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>抓包工具Charles的使用心得</title>
+    <link href="zhangfei.tk/2016/02/06/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7Charles%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"/>
+    <id>zhangfei.tk/2016/02/06/抓包工具Charles的使用心得/</id>
+    <published>2016-02-05T16:00:00.000Z</published>
+    <updated>2016-03-26T15:21:28.000Z</updated>
+    
+    <content type="html">&lt;p&gt;在平时开发的时候也经常用到Charles这款软件，它的功能功能非常的强大，不仅仅在Mac上可以用，并且还可以在Windows和Linux下使用。我在iOS开发的工程中使用，就分享一下在Mac上的使用心得吧！&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;Charles其实是一款代理服务器，通过成为电脑或者浏览器的代理，然后截取请求和请求结果达到分析抓包的目的。该软件是用Java写的，能够在Windows，Mac，Linux上使用。开发iOS都在Mac系统上吧，安装Charles的时候要先装好Java环境。这么好的软件不是免费的，&lt;a href=&quot;http://www.charlesproxy.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;要好几十刀呢，我这里有一个Mac上的破解版，&lt;a href=&quot;http://pan.baidu.com/s/1qXoCiwW&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点击这里下载&lt;/a&gt;，当然不是最新版的。如果你想体验最新版，Charles是提供试用的。&lt;/p&gt;
+&lt;h3 id=&quot;Charles主要功能&quot;&gt;&lt;a href=&quot;#Charles主要功能&quot; class=&quot;headerlink&quot; title=&quot;Charles主要功能&quot;&gt;&lt;/a&gt;Charles主要功能&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;支持SSL代理。可以截取分析SSL的请求。&lt;/li&gt;
+&lt;li&gt;支持流量控制。可以模拟慢速网络以及等待时间（latency）较长的请求。&lt;/li&gt;
+&lt;li&gt;支持AJAX调试。可以自动将json或xml数据格式化，方便查看。&lt;/li&gt;
+&lt;li&gt;支持AMF调试。可以将Flash Remoting 或 Flex Remoting信息格式化，方便查看。&lt;/li&gt;
+&lt;li&gt;支持重发网络请求，方便后端调试。&lt;/li&gt;
+&lt;li&gt;支持修改网络请求参数。&lt;/li&gt;
+&lt;li&gt;支持网络请求的截获并动态修改。&lt;/li&gt;
+&lt;li&gt;检查HTML，CSS和RSS内容是否符合W3C标准。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;开始抓包&quot;&gt;&lt;a href=&quot;#开始抓包&quot; class=&quot;headerlink&quot; title=&quot;开始抓包&quot;&gt;&lt;/a&gt;开始抓包&lt;/h3&gt;&lt;p&gt;先看一下Charles的庐山真面目吧！&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/cfaa8811jw1f2anux8xirj21kw0zkwij.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;接下来要把电脑设置为代理&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/cfaa8811jw1f2anvkphh3j21kw0zkaiq.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这样你会发现，你通过浏览器请求的网址都会出现在这里，iOS模拟器的所有的网络请求也会出现在这里。点击某一个网址后，你会发现右边会出现这个网址请求的大概信息，点击具体的请求后会出现request和response等信息&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/cfaa8811jw1f2anubwqf2j21kw0zqn71.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果你发现返回的是乱码，首先看是在http请求还是https请求，如果是http请求，那么应该就是返回来的中文乱码,解决方案是找到该软件显示包内容，Contents目录下的info.plist，打开文件找到&lt;code&gt;vmoption&lt;/code&gt;,添加&lt;code&gt;-Dfile.encoding=UTF-8&lt;/code&gt;即可。&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/cfaa8811jw1f2anuf5fbuj21kw1064b9.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果是https请求出现的乱码，如下图这种情况&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/cfaa8811jw1f2anuauw7dj214r0oj1b8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这时候你就需要安装Charles的CA证书了，首先到去 &lt;a href=&quot;http://www.charlesproxy.com/ssl.zip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.charlesproxy.com/ssl.zip&lt;/a&gt; 下载CA证书文件。双击crt文件，选择总是信任就可以了，当然如果要抓取iPhone设备上的HTTPS请求，需要在iPhone上也安装一个证书，在手机浏览器输入这个网址：&lt;a href=&quot;http://charlesproxy.com/getssl&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://charlesproxy.com/getssl&lt;/a&gt; ，点击安装即可。然后你就可以告别那烦人的乱码，可以愉快地抓包了。&lt;/p&gt;
+&lt;h3 id=&quot;抓取真机上的包&quot;&gt;&lt;a href=&quot;#抓取真机上的包&quot; class=&quot;headerlink&quot; title=&quot;抓取真机上的包&quot;&gt;&lt;/a&gt;抓取真机上的包&lt;/h3&gt;&lt;p&gt; 抓取真机上的数据非常的简单，首先使手机和电脑在一个局域网内，不一定非要是一个ip段，只要是同一个路由器下就可以了。按照上面说的把证书安装好，然后找到电脑的IP，你可以选择在终端输入&lt;code&gt;ifconfig en0&lt;/code&gt;来获取，也可以选择打开网络偏好设置来查看。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/cfaa8811jw1f2anva8cl6j212q0qkteo.jpg&quot; alt=&quot;终端获取IP&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/cfaa8811jw1f2anuv6dlbj217c11iag8.jpg&quot; alt=&quot;网络偏好设置查看IP&quot;&gt;&lt;/p&gt;
+&lt;p&gt;接下来打开Charles的代理设置：&lt;code&gt;Proxy-&amp;gt;Proxy Settings&lt;/code&gt;，设置一下端口号，默认的是8888，这个只要不和其他程序的冲突即可,并且勾选&lt;code&gt;Enable transparent HTTP proxying&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/cfaa8811jw1f2anvbeml0j218w0xywkz.jpg&quot; alt=&quot;端口号设置&quot;&gt;&lt;br&gt;在手机上连接上和电脑在同一局域网的网络上设置HTTP代理。端口号就是刚刚在Charles上设置的那个。&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/cfaa8811jw1f2ao4mpvt0j21k214aqc9.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;然后在手机上随便打开一个网址，这是Charles会弹出一个框让你确认是否代理，点击allow就可以了，然后你就会在Charles上发现手机上的请求了。&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/cfaa8811jw1f2antuwwxgj20z40h2aes.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;过滤&quot;&gt;&lt;a href=&quot;#过滤&quot; class=&quot;headerlink&quot; title=&quot;过滤&quot;&gt;&lt;/a&gt;过滤&lt;/h3&gt;&lt;p&gt;在 Charles 的菜单栏选择 &lt;code&gt;Proxy-&amp;gt;Recording Settings&lt;/code&gt;，然后选择 &lt;code&gt;Include&lt;/code&gt; 栏，选择&lt;code&gt;Add&lt;/code&gt;，然后填入需要监控的协议，主机地址，端口号,这样就达到了过滤的目的。如下图：&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/cfaa8811jw1f2anujcpptj20v20r2dkk.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;还有一种方法就是在一个网址上右击，选择&lt;code&gt;Focus&lt;/code&gt;，然后其他的请求就会被放到一个叫Other Host的文件夹里面，这样也达到了过滤的目的。&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/cfaa8811jw1f2anvsjkfij21kw0rd7ew.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;断点&quot;&gt;&lt;a href=&quot;#断点&quot; class=&quot;headerlink&quot; title=&quot;断点&quot;&gt;&lt;/a&gt;断点&lt;/h3&gt;&lt;p&gt;断点的功能搞开发不会不知道，在Charles发起一个请求的时候，我们是可以给某个请求打一个断点的，然后来观察或者修改请求或者返回的内容，但是在这过程中药注意请求的超时时间问题。要针对某一个请求设置断点，只需要在这个请求网址右击选择Breakpoints就可以断点某一个请求了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/cfaa8811jw1f2anu9p7jpj21ia0zeqhn.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;模拟网速慢&quot;&gt;&lt;a href=&quot;#模拟网速慢&quot; class=&quot;headerlink&quot; title=&quot;模拟网速慢&quot;&gt;&lt;/a&gt;模拟网速慢&lt;/h3&gt;&lt;p&gt;有时候在开发的时候我们想要模拟一下网络慢的情况，这时候Charles他是可以帮助到你的，在&lt;code&gt;Proxy&lt;/code&gt;-&amp;gt;&lt;code&gt;Throttle Setting&lt;/code&gt;，然后选择&lt;code&gt;Enable Throttling&lt;/code&gt;，在&lt;code&gt;Throttle Preset&lt;/code&gt;下选择网络类型即可，具体设置你可以自行拿捏。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/cfaa8811jw1f2anujqp26j20zc10ejx7.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;请求重定向&quot;&gt;&lt;a href=&quot;#请求重定向&quot; class=&quot;headerlink&quot; title=&quot;请求重定向&quot;&gt;&lt;/a&gt;请求重定向&lt;/h3&gt;&lt;p&gt;请求重定向的作用是什么呢？开发中一般都是测试环境，如果我们想对比一下和线上版本的区别的话，可以讲测试的请求重定向到正式环境下。在选择 &lt;code&gt;Tools&lt;/code&gt;-&amp;gt;&lt;code&gt;Map Remote下&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/cfaa8811jw1f2anv3vnr3j21kw0y218e.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;内容替换&quot;&gt;&lt;a href=&quot;#内容替换&quot; class=&quot;headerlink&quot; title=&quot;内容替换&quot;&gt;&lt;/a&gt;内容替换&lt;/h3&gt;&lt;p&gt;有时候我们会测一下请求的参数不同会带来不同的返回结果以测试是否达到业务需求，或者需要不同的返回结果来验证我们对数据的处理是否正确，这时候需要后台的同事配合，但是有了Charles，我们可以自己把控接口返回来的内容，比如数据的空与否，数据的长短等等。在&lt;code&gt;Tools&lt;/code&gt;-&amp;gt;&lt;code&gt;Rewrite Settings&lt;/code&gt;下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/cfaa8811jw1f2anvhcu1kj21kw0y0ar3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;其他&quot;&gt;&lt;a href=&quot;#其他&quot; class=&quot;headerlink&quot; title=&quot;其他&quot;&gt;&lt;/a&gt;其他&lt;/h3&gt;&lt;p&gt;Charles还有一下其他的妙用。慢慢的去发掘吧！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在平时开发的时候也经常用到Charles这款软件，它的功能功能非常的强大，不仅仅在Mac上可以用，并且还可以在Windows和Linux下使用。我在iOS开发的工程中使用，就分享一下在Mac上的使用心得吧！&lt;br&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="zhangfei.tk/categories/iOS/"/>
+    
+    
+      <category term="笔记" scheme="zhangfei.tk/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>聊聊iOS开发中的单元测试</title>
@@ -1399,65 +1454,6 @@
       <category term="域名" scheme="zhangfei.tk/tags/%E5%9F%9F%E5%90%8D/"/>
     
       <category term="随笔" scheme="zhangfei.tk/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>初识Android Studio</title>
-    <link href="zhangfei.tk/2015/05/11/androidStudio%E7%9A%84%E4%BB%8B%E7%BB%8D/"/>
-    <id>zhangfei.tk/2015/05/11/androidStudio的介绍/</id>
-    <published>2015-05-11T03:11:11.000Z</published>
-    <updated>2015-12-19T16:03:05.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Android Studio是谷歌推出的Android应用程序开发IDE，虽然现在主流还是用Eclipse来开发Android程序，但是我估计随着谷歌对Android的掌控，Android Studio会成为Android程序开发的主要工具。下面先来看看它的庐山真面目吧！&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://7xiz34.com1.z0.glb.clouddn.com/深度截图20150517100443.png&quot; alt=&quot;android studio&quot; title=&quot;android&quot;&gt;&lt;/center&gt;
-
-&lt;p&gt;是不是美美哒？既然Android是源于linux,我就选择一个linux系统作为开发系统环境吧！我选用的系统是deepin 2014.3，安装Android Studio的方法是用Unubtu Make,如果不了解Unubtu Make，请自行google，下面我讲一讲大概的安装方法。&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;1.添加ppa&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
-sudo apt-get update
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.安装Ubuntu Make&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo apt-get install ubuntu-make
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.安装Android Studio&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;umake android
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果一切顺利，你就可以到启动器(程序列表)中打开你安装好的Android Studio了！就会像下面那样开启你的Android Studio之旅了。但是打开以后你会遇到一些疑问。&lt;/p&gt;
-&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://7xiz34.com1.z0.glb.clouddn.com/深度截图20150517100150.png&quot; alt=&quot;android&quot; title=&quot;android&quot;&gt;&lt;/center&gt;
-
-
-&lt;p&gt;1.第一次打开会出现如下界面，这是在下载SDK的相关组件。&lt;/p&gt;
-&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://7xiz34.com1.z0.glb.clouddn.com/深度截图20150517100245.png&quot; alt=&quot;download&quot; title=&quot;install&quot;&gt;&lt;/center&gt;
-
-
-&lt;p&gt;解决办法：耐心等待，不要以为是卡主了，我也等了好久才下载好。当然如果过分就了，就得考虑翻墙了。&lt;/p&gt;
-&lt;p&gt;２．打开以后出现一下提示&lt;/p&gt;
-&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://7xiz34.com1.z0.glb.clouddn.com/深度截图20150513073317.png&quot; alt=&quot;tips&quot; title=&quot;tips&quot;&gt;&lt;/center&gt;
-
-
-&lt;p&gt;解决办法：这是由于linux上默认安装的java环境是openjdk,所以要按照提示安装一个oracle的java环境。下面是我安装oracle的java环境办法：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ssudo add-apt-repository ppa:webupd8team/java
-sudo apt-get update
-sudo apt-get install oracle-java8-installer
-sudo apt-get install oracle-java8-set-default
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.模拟器老是弹出一个说谷歌服务停止的提示框&lt;/p&gt;
-&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://7xiz34.com1.z0.glb.clouddn.com/深度截图20150515224050.png&quot; alt=&quot;google services&quot; title=&quot;google&quot;&gt;&lt;/center&gt;
-
-&lt;p&gt;解决办法：在模拟器中找到Settings–&amp;gt;Apps–&amp;gt;ALL,找到Google Play Services,点击进去，DISABLED就OK了。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Android Studio是谷歌推出的Android应用程序开发IDE，虽然现在主流还是用Eclipse来开发Android程序，但是我估计随着谷歌对Android的掌控，Android Studio会成为Android程序开发的主要工具。下面先来看看它的庐山真面目吧！&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="zhangfei.tk/categories/Android/"/>
-    
-    
-      <category term="教程" scheme="zhangfei.tk/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="Android" scheme="zhangfei.tk/tags/Android/"/>
     
   </entry>
   
