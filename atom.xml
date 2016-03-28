@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="zhangfei.tk/"/>
-  <updated>2016-03-28T07:48:14.000Z</updated>
+  <updated>2016-03-28T07:55:23.000Z</updated>
   <id>zhangfei.tk/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="zhangfei.tk/2016/03/17/iOS%E5%BC%80%E5%8F%91%E4%B9%8BUIKit%20Dynamics%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/"/>
     <id>zhangfei.tk/2016/03/17/iOS开发之UIKit Dynamics学习心得/</id>
     <published>2016-03-16T16:00:00.000Z</published>
-    <updated>2016-03-28T07:48:14.000Z</updated>
+    <updated>2016-03-28T07:55:23.000Z</updated>
     
     <content type="html">&lt;p&gt;在iOS7上新增加了UIKit Dynamic，它能够让UIView模拟逼真的物理效果。如重力，碰撞，弹簧，吸附等效果，有了这些效果能轻松的提高应用的用户体验。想要实现这些力学动画效果，首先要创建一个力学动画生成器（UIDynamicAnimator），然后使用各种行为进行定制，可用于定制&lt;code&gt;UIDynamicAnimator&lt;/code&gt;的行为的类有：&lt;code&gt;UIAttachmentBehavior&lt;/code&gt;，&lt;code&gt;UICollisionBehavior&lt;/code&gt;，&lt;code&gt;UIGravityBehavior&lt;/code&gt;，&lt;code&gt;UIDynamicItemBehavior&lt;/code&gt;，&lt;code&gt;UIPushBehavior&lt;/code&gt;，&lt;code&gt;UISnapBehavior&lt;/code&gt;。他们能够赋予UIView逼真的行为和动画。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -81,7 +81,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;p&gt;文章代码Demo&lt;a href=&quot;https://github.com/zhangfeidev/UIKit-Dynamics-Demo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点这里&lt;/a&gt;&lt;br&gt;UIDynamicAnimator还有代理方法和其他的小方法，正真发挥它的作用力的是你的创意，有好的ideal就动手撸吧！&lt;/p&gt;
+&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;p&gt;文章代码Demo&lt;a href=&quot;https://github.com/zhangfeidev/UIKit-Dynamics-Demo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点这里&lt;/a&gt;&lt;br&gt;UIDynamicAnimator还有代理方法和其他的小方法，真正发挥它的作用力的是你的创意，有好的ideal就动手撸吧！&lt;/p&gt;
 </content>
     
     <summary type="html">
