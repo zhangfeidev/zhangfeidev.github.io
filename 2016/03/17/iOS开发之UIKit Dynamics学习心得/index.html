@@ -1,0 +1,959 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="笔记,iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="在iOS7上新增加了UIKit Dynamic，它能够让UIView模拟逼真的物理效果。如重力，碰撞，弹簧，吸附等效果，有了这些效果能轻松的提高应用的用户体验。想要实现这些力学动画效果，首先要创建一个力学动画生成器（UIDynamicAnimator），然后使用各种行为进行定制，可用于定制UIDynamicAnimator的行为的类有：UIAttachmentBehavior，UICollisio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发之UIKit Dynamics学习心得">
+<meta property="og:url" content="zhangfei.tk/2016/03/17/iOS开发之UIKit Dynamics学习心得/index.html">
+<meta property="og:site_name" content="张飞的技术博客">
+<meta property="og:description" content="在iOS7上新增加了UIKit Dynamic，它能够让UIView模拟逼真的物理效果。如重力，碰撞，弹簧，吸附等效果，有了这些效果能轻松的提高应用的用户体验。想要实现这些力学动画效果，首先要创建一个力学动画生成器（UIDynamicAnimator），然后使用各种行为进行定制，可用于定制UIDynamicAnimator的行为的类有：UIAttachmentBehavior，UICollisio">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2cm618xv6g208u0fqaci.gif">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2cm66wjzig208u0fstgv.gif">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2cm6abs8lg208u0fqqdb.gif">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/cfaa8811jw1f2cm5o6pnlg208u0fqwoq.gif">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2cm9ypwwhg208w0fsju2.gif">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/cfaa8811jw1f2cm64611eg208u0fq76k.gif">
+<meta property="og:updated_time" content="2016-03-28T07:48:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发之UIKit Dynamics学习心得">
+<meta name="twitter:description" content="在iOS7上新增加了UIKit Dynamic，它能够让UIView模拟逼真的物理效果。如重力，碰撞，弹簧，吸附等效果，有了这些效果能轻松的提高应用的用户体验。想要实现这些力学动画效果，首先要创建一个力学动画生成器（UIDynamicAnimator），然后使用各种行为进行定制，可用于定制UIDynamicAnimator的行为的类有：UIAttachmentBehavior，UICollisio">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2cm618xv6g208u0fqaci.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> iOS开发之UIKit Dynamics学习心得 | 张飞的技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-64177819-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?88f14784f52b40a5e212d560afbe9da4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">张飞的技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一枚专注与移动开发的IT文艺青年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS开发之UIKit Dynamics学习心得
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-17T00:00:00+08:00" content="2016-03-17">
+              2016-03-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/17/iOS开发之UIKit Dynamics学习心得/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/17/iOS开发之UIKit Dynamics学习心得/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/03/17/iOS开发之UIKit Dynamics学习心得/" class="leancloud_visitors" data-flag-title="iOS开发之UIKit Dynamics学习心得">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在iOS7上新增加了UIKit Dynamic，它能够让UIView模拟逼真的物理效果。如重力，碰撞，弹簧，吸附等效果，有了这些效果能轻松的提高应用的用户体验。想要实现这些力学动画效果，首先要创建一个力学动画生成器（UIDynamicAnimator），然后使用各种行为进行定制，可用于定制<code>UIDynamicAnimator</code>的行为的类有：<code>UIAttachmentBehavior</code>，<code>UICollisionBehavior</code>，<code>UIGravityBehavior</code>，<code>UIDynamicItemBehavior</code>，<code>UIPushBehavior</code>，<code>UISnapBehavior</code>。他们能够赋予UIView逼真的行为和动画。<br><a id="more"></a></p>
+<blockquote>
+<p>NOTE：每个力学动画生成器都是独立的，多个动画力学生成器可同时运行。要让力学动画生成器持续运行，必须要有指向它的有效应用。一旦动画处于静止状态（如弹簧效果恢复原状）之后，力学动画生成器将暂停，不在执行任何计算了。但是对于未用的力学动画生成器，最好把它删除掉。</p>
+</blockquote>
+<h3 id="生成一个力学动画生成器"><a href="#生成一个力学动画生成器" class="headerlink" title="生成一个力学动画生成器"></a>生成一个力学动画生成器</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIDynamicAnimator</span> *animator =[ [<span class="built_in">UIDynamicAnimator</span> alloc] initWithReferenceView:<span class="keyword">self</span>.view];<span class="comment">//行为视图的父视图必须是动画生成器的参考视图</span></span><br><span class="line">[animator addBehavior:aDynamicBeahvior];<span class="comment">//aDynamicBeahvior是一个行为</span></span><br></pre></td></tr></table></figure>
+<h3 id="重力（UIGravityBehavior）"><a href="#重力（UIGravityBehavior）" class="headerlink" title="重力（UIGravityBehavior）"></a>重力（UIGravityBehavior）</h3><p>重力的效果如图所示：</p>
+<p><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2cm618xv6g208u0fqaci.gif" alt=""></p>
+<p>对于重力行为，需要注意的有角度（angle）和量级（magnitude，我也叫它重力加速度），实现代码如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIGravityBehavior</span> *gravityBehavior = [[<span class="built_in">UIGravityBehavior</span> alloc] initWithItems:@[footballView]];</span><br><span class="line"> <span class="comment">//angle:角度(弧度)  magnitude:量级(重力系数)</span></span><br><span class="line">[gravityBehavior setAngle:<span class="number">3.14</span>/<span class="number">2</span> magnitude:<span class="number">0.1</span>f];</span><br><span class="line">[<span class="keyword">self</span>.animator addBehavior:gravityBehavior];</span><br></pre></td></tr></table></figure>
+<h3 id="碰撞（UICollisionBehavior）"><a href="#碰撞（UICollisionBehavior）" class="headerlink" title="碰撞（UICollisionBehavior）"></a>碰撞（UICollisionBehavior）</h3><p>说到碰撞，一个是物体之间的碰撞，一个是与边界的碰撞，在上面的重力效果演示图中，足球从上落下，一直落到屏幕之外，这是由于我们没有给他设置<code>边界</code>。我们看看碰撞的效果图：</p>
+<p><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2cm66wjzig208u0fstgv.gif" alt=""></p>
+<p>我给图中的<code>篮球</code>和<code>足球</code>设置了重力效果和碰撞效果，代码如下：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIGravityBehavior</span> *gravityBehavior = [[<span class="built_in">UIGravityBehavior</span> alloc] initWithItems:@[<span class="keyword">self</span>.footballView,<span class="keyword">self</span>.basketballView]];</span><br><span class="line">[gravityBehavior setAngle:<span class="number">3.14</span>/<span class="number">2</span> magnitude:<span class="number">0.1</span>f];   </span><br><span class="line"><span class="comment">//碰撞效果</span></span><br><span class="line"><span class="built_in">UICollisionBehavior</span> *collisionBehavior = [[<span class="built_in">UICollisionBehavior</span> alloc] initWithItems:@[<span class="keyword">self</span>.footballView,<span class="keyword">self</span>.basketballView]];</span><br><span class="line">[collisionBehavior setCollisionMode:<span class="built_in">UICollisionBehaviorModeEverything</span>];<span class="comment">//碰撞效果，必须指定的</span></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> *  UICollisionBehaviorModeEverything:物体既相互碰撞又与边界碰撞</span><br><span class="line"> *  UICollisionBehaviorModeBoundaries:物体不相互碰撞，只与边界碰撞</span><br><span class="line"> *  UICollisionBehaviorModeItems:物体相互碰撞，不与边界碰撞</span><br><span class="line"> */</span></span><br><span class="line"><span class="comment">//设置边界为动画器参考view的视图范围</span></span><br><span class="line">collisionBehavior.translatesReferenceBoundsIntoBoundary = <span class="literal">YES</span>;</span><br><span class="line"><span class="comment">//代理可以监听碰撞</span></span><br><span class="line">collisionBehavior.collisionDelegate = <span class="keyword">self</span>;</span><br><span class="line">[<span class="keyword">self</span>.animator addBehavior:gravityBehavior];</span><br><span class="line">[<span class="keyword">self</span>.animator addBehavior:collisionBehavior];</span><br></pre></td></tr></table></figure></p>
+<h3 id="连接（UIAttachmentBehavior）"><a href="#连接（UIAttachmentBehavior）" class="headerlink" title="连接（UIAttachmentBehavior）"></a>连接（UIAttachmentBehavior）</h3><p>连接就是让一个物体的行为和移动受另外一个物体的移动。使用连接效果要指定连接点。效果大概如下：</p>
+<p><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2cm6abs8lg208u0fqqdb.gif" alt=""></p>
+<p>在上面的效果演示图中，我添加了一个<code>pan</code>手势，然后取<code>pan</code>的坐标点让其成为<code>篮球</code>的<code>center</code>,在连接效果的作用下，足球会由于篮球的移动而动，具体代码如下：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.animator = [[<span class="built_in">UIDynamicAnimator</span> alloc] initWithReferenceView:<span class="keyword">self</span>.view];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">UICollisionBehavior</span> *collisionBehavior = [[<span class="built_in">UICollisionBehavior</span> alloc] initWithItems:@[<span class="keyword">self</span>.footballView,<span class="keyword">self</span>.basketballView]];</span><br><span class="line">[collisionBehavior setCollisionMode:<span class="built_in">UICollisionBehaviorModeEverything</span>];</span><br><span class="line">collisionBehavior.translatesReferenceBoundsIntoBoundary = <span class="literal">YES</span>;</span><br><span class="line">    </span><br><span class="line"><span class="built_in">CGPoint</span> basketballCenter = <span class="built_in">CGPointMake</span>(<span class="keyword">self</span>.basketballView.center.x, <span class="keyword">self</span>.basketballView.center.y);</span><br><span class="line"><span class="keyword">self</span>.attachmentBehavior = [[<span class="built_in">UIAttachmentBehavior</span> alloc] initWithItem:<span class="keyword">self</span>.basketballView attachedToAnchor:basketballCenter];</span><br><span class="line">    </span><br><span class="line">[<span class="keyword">self</span>.animator addBehavior:collisionBehavior];</span><br><span class="line">[<span class="keyword">self</span>.animator addBehavior:<span class="keyword">self</span>.attachmentBehavior];</span><br><span class="line"> </span><br><span class="line"><span class="keyword">self</span>.panGesture = [[<span class="built_in">UIPanGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(handAttachmentesture:)];</span><br><span class="line">[<span class="keyword">self</span>.view addGestureRecognizer:<span class="keyword">self</span>.panGesture];</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)handAttachmentesture:(<span class="built_in">UIPanGestureRecognizer</span> *)gesture&#123;</span><br><span class="line">    <span class="built_in">CGPoint</span> gesturePoint = [gesture locationInView:<span class="keyword">self</span>.view];</span><br><span class="line">    <span class="keyword">self</span>.basketballView.center = gesturePoint;</span><br><span class="line">    [<span class="keyword">self</span>.attachmentBehavior setAnchorPoint:gesturePoint];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="弹簧"><a href="#弹簧" class="headerlink" title="弹簧"></a>弹簧</h3><p>弹簧效果应该都懂，先看看效果：</p>
+<p><img src="http://ww4.sinaimg.cn/large/cfaa8811jw1f2cm5o6pnlg208u0fqwoq.gif" alt=""></p>
+<p>弹簧效果其实是在连接效果上实现的，恰当设置连接效果的<code>Frequency</code>,<code>Damping</code>这二个属性后就可以达到弹簧的效果了，在上面的代码加上：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span>.attachmentBehavior setFrequency:<span class="number">1.0</span>f];<span class="comment">//振动频率</span></span><br><span class="line">[<span class="keyword">self</span>.attachmentBehavior setDamping:<span class="number">0.1</span>f];<span class="comment">//熨平动画的峰值</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="吸附（UISnapBehavior）"><a href="#吸附（UISnapBehavior）" class="headerlink" title="吸附（UISnapBehavior）"></a>吸附（UISnapBehavior）</h3><p>吸附效果有点像磁铁吸铁块一样，只要我们指定一个点，具有吸附效果的<code>物体</code>就有了被<code>磁铁</code>吸过去的效果了。</p>
+<p><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2cm9ypwwhg208w0fsju2.gif" alt=""></p>
+<p>我们在屏幕上指定一个<code>tap</code>手势，讲<code>tap</code>后的点作为<code>磁铁</code>,代码：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.animator = [[<span class="built_in">UIDynamicAnimator</span> alloc] initWithReferenceView:<span class="keyword">self</span>.view];</span><br><span class="line"><span class="keyword">self</span>.tapGesture = [[<span class="built_in">UITapGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(handTapGesture:)];</span><br><span class="line">[<span class="keyword">self</span>.view addGestureRecognizer:<span class="keyword">self</span>.tapGesture];</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)handTapGesture:(<span class="built_in">UITapGestureRecognizer</span> *)gesture&#123;</span><br><span class="line">    <span class="built_in">CGPoint</span> point = [gesture locationInView:<span class="keyword">self</span>.view];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.snapBehavior == <span class="literal">nil</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.snapBehavior = [[<span class="built_in">UISnapBehavior</span> alloc] initWithItem:<span class="keyword">self</span>.footballView snapToPoint:point];</span><br><span class="line">        <span class="keyword">self</span>.snapBehavior.damping = <span class="number">0.75</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    [<span class="keyword">self</span>.animator addBehavior:<span class="keyword">self</span>.snapBehavior];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="推力"><a href="#推力" class="headerlink" title="推力"></a>推力</h3><p>推力指得是可以对物体施加推力，效果：</p>
+<p><img src="http://ww4.sinaimg.cn/large/cfaa8811jw1f2cm64611eg208u0fq76k.gif" alt=""></p>
+<p>我用了一个<code>tap</code>手势作为施加推力的源，代码如下：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.animator = [[<span class="built_in">UIDynamicAnimator</span> alloc] initWithReferenceView:<span class="keyword">self</span>.view];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">UICollisionBehavior</span> * collisionBehavior = [[<span class="built_in">UICollisionBehavior</span> alloc] initWithItems:@[<span class="keyword">self</span>.footballView]];</span><br><span class="line">[<span class="keyword">self</span>.animator addBehavior:collisionBehavior];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">UIPushBehavior</span> *pushBehavior = [[<span class="built_in">UIPushBehavior</span> alloc] initWithItems:@[<span class="keyword">self</span>.footballView] mode:<span class="built_in">UIPushBehaviorModeInstantaneous</span>];</span><br><span class="line">pushBehavior.angle = <span class="number">0.0</span>;</span><br><span class="line">pushBehavior.magnitude = <span class="number">0.</span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">self</span>.pushBehavior = pushBehavior;</span><br><span class="line">[<span class="keyword">self</span>.animator addBehavior:<span class="keyword">self</span>.pushBehavior];</span><br><span class="line">    </span><br><span class="line"><span class="keyword">self</span>.tapGesture = [[<span class="built_in">UITapGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(handTapGesture:)];</span><br><span class="line">[<span class="keyword">self</span>.view addGestureRecognizer:<span class="keyword">self</span>.tapGesture];</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)handTapGesture:(<span class="built_in">UITapGestureRecognizer</span> *)gesture&#123;</span><br><span class="line">    <span class="built_in">CGPoint</span> point = [gesture locationInView:<span class="keyword">self</span>.view];</span><br><span class="line">    <span class="built_in">CGPoint</span> origin = <span class="built_in">CGPointMake</span>(<span class="built_in">CGRectGetMidX</span>(<span class="keyword">self</span>.view.bounds), <span class="built_in">CGRectGetMidY</span>(<span class="keyword">self</span>.view.bounds));</span><br><span class="line">    <span class="built_in">CGFloat</span> distance = sqrtf(powf(point.x-origin.x, <span class="number">2.0</span>) + powf(point.y-origin.y, <span class="number">2.0</span>));</span><br><span class="line">    <span class="built_in">CGFloat</span> angle = atan2(point.y-origin.y, point.x-origin.x);</span><br><span class="line">    distance = MIN(distance, <span class="number">100.0</span>);</span><br><span class="line">    [<span class="keyword">self</span>.pushBehavior setMagnitude:distance/<span class="number">100.0</span>];</span><br><span class="line">    [<span class="keyword">self</span>.pushBehavior setAngle:angle];</span><br><span class="line">    [<span class="keyword">self</span>.pushBehavior setActive:<span class="literal">true</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="物体属性"><a href="#物体属性" class="headerlink" title="物体属性"></a>物体属性</h3><p><code>物体</code>都有很多的属性，通过对其配置，可以达到不同的效果，下面是一些常用的属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>elasticity</td>
+<td>表示与其他物体碰撞时的弹性，取值0-1，0表示没有弹性，1表示反弹作用力与碰撞作用力相等</td>
+</tr>
+<tr>
+<td>allowsRotation</td>
+<td>指定物体在受力时是否会旋转，默认YES</td>
+</tr>
+<tr>
+<td>angularResistance</td>
+<td>旋转助力，值越大旋转下降得越快，取值为0-CGFLOAT_MAX</td>
+</tr>
+<tr>
+<td>density</td>
+<td>物体的密度，调整密度会影响重力和碰撞的效果。默认情况下，100x100的物体质量为1，100x200为2</td>
+</tr>
+<tr>
+<td>friction</td>
+<td>物体之间的滑动阻力，0表示没有摩擦力，1表示摩擦力很大</td>
+</tr>
+<tr>
+<td>resistance</td>
+<td>空气阻力，取值为0-CGFLOAT_MAX，0表示没有空气阻力，1表示一旦其他作用力消失，物体就会停止</td>
+</tr>
+</tbody>
+</table>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>文章代码Demo<a href="https://github.com/zhangfeidev/UIKit-Dynamics-Demo" target="_blank" rel="external">点这里</a><br>UIDynamicAnimator还有代理方法和其他的小方法，正真发挥它的作用力的是你的创意，有好的ideal就动手撸吧！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag">#笔记</a>
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/18/抓包工具Charles的使用心得/" rel="next" title="抓包工具Charles的使用心得">
+                <i class="fa fa-chevron-left"></i> 抓包工具Charles的使用心得
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/03/17/iOS开发之UIKit Dynamics学习心得/"
+     data-title="iOS开发之UIKit Dynamics学习心得"
+     data-content=""
+     data-url="zhangfei.tk/2016/03/17/iOS开发之UIKit Dynamics学习心得/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/17/iOS开发之UIKit Dynamics学习心得/"
+           data-title="iOS开发之UIKit Dynamics学习心得" data-url="zhangfei.tk/2016/03/17/iOS开发之UIKit Dynamics学习心得/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.png"
+               alt="小飞" />
+          <p class="site-author-name" itemprop="name">小飞</p>
+          <p class="site-description motion-element" itemprop="description">张飞的技术博客，专注移动开发，欢迎交流！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhangfeidev" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/520513453/home?wvr=5" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">Links</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.superqq.com" target="_blank">刚刚在线</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成一个力学动画生成器"><span class="nav-number">1.</span> <span class="nav-text">生成一个力学动画生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重力（UIGravityBehavior）"><span class="nav-number">2.</span> <span class="nav-text">重力（UIGravityBehavior）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#碰撞（UICollisionBehavior）"><span class="nav-number">3.</span> <span class="nav-text">碰撞（UICollisionBehavior）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接（UIAttachmentBehavior）"><span class="nav-number">4.</span> <span class="nav-text">连接（UIAttachmentBehavior）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弹簧"><span class="nav-number">5.</span> <span class="nav-text">弹簧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吸附（UISnapBehavior）"><span class="nav-number">6.</span> <span class="nav-text">吸附（UISnapBehavior）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推力"><span class="nav-number">7.</span> <span class="nav-text">推力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#物体属性"><span class="nav-number">8.</span> <span class="nav-text">物体属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小飞</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangfeidev"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sYRIjCXYRTf3QBLYmsMj57xI-gzGzoHsz", "s970KBAbF70E5GmVK8yN9Buz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

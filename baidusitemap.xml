@@ -4,14 +4,36 @@
 
     
   <url>
-    <loc>zhangfei.tk/2016/02/06/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7Charles%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</loc>
-    <lastmod>2016-03-26T15:21:28.000Z</lastmod>
+    <loc>zhangfei.tk/2016/02/18/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7Charles%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/</loc>
+    <lastmod>2016-03-28T07:48:53.000Z</lastmod>
     <data>
         <display>
         <title>抓包工具Charles的使用心得</title>
-        <pubTime>2016-02-05T16:00:00.000Z</pubTime>
+        <pubTime>2016-02-17T16:00:00.000Z</pubTime>
         
         <tag>笔记</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="zhangfei.tk/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>zhangfei.tk/2016/03/17/iOS%E5%BC%80%E5%8F%91%E4%B9%8BUIKit%20Dynamics%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/</loc>
+    <lastmod>2016-03-28T07:48:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS开发之UIKit Dynamics学习心得</title>
+        <pubTime>2016-03-16T16:00:00.000Z</pubTime>
+        
+        <tag>笔记</tag>
+         
+        <tag>iOS</tag>
          
          
            

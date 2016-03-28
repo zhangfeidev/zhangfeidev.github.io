@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="笔记,Objective-C," />
+  <meta name="keywords" content="笔记," />
 
 
 
@@ -57,19 +57,33 @@
 
 
 
-<meta name="description" content="在对导航栏进行深度学习的时候，在网上发现@我就叫Sunny怎么了开源了一个导航栏返回手势的库FDFullscreenPopGesture,我看了看源代码，作者使用Runtime的一些知识实现的，今天我就借这个库的源代码进行Runtime的用法进行学习。">
+<meta name="description" content="在平时开发的时候也经常用到Charles这款软件，它的功能功能非常的强大，不仅仅在Mac上可以用，并且还可以在Windows和Linux下使用。我在iOS开发的工程中使用，就分享一下在Mac上的使用心得吧！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Runtime用法简要剖析">
-<meta property="og:url" content="zhangfei.tk/2015/11/19/Runtime用法剖析/index.html">
+<meta property="og:title" content="抓包工具Charles的使用心得">
+<meta property="og:url" content="zhangfei.tk/2016/02/18/抓包工具Charles的使用心得/index.html">
 <meta property="og:site_name" content="张飞的技术博客">
-<meta property="og:description" content="在对导航栏进行深度学习的时候，在网上发现@我就叫Sunny怎么了开源了一个导航栏返回手势的库FDFullscreenPopGesture,我看了看源代码，作者使用Runtime的一些知识实现的，今天我就借这个库的源代码进行Runtime的用法进行学习。">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1ey7v8615vhj20sd0l8n41.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1ey7veld0soj205k05l74a.jpg">
-<meta property="og:updated_time" content="2016-03-23T05:00:50.000Z">
+<meta property="og:description" content="在平时开发的时候也经常用到Charles这款软件，它的功能功能非常的强大，不仅仅在Mac上可以用，并且还可以在Windows和Linux下使用。我在iOS开发的工程中使用，就分享一下在Mac上的使用心得吧！">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/cfaa8811jw1f2anux8xirj21kw0zkwij.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anvkphh3j21kw0zkaiq.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anubwqf2j21kw0zqn71.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anuf5fbuj21kw1064b9.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anuauw7dj214r0oj1b8.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anva8cl6j212q0qkteo.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anuv6dlbj217c11iag8.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anvbeml0j218w0xywkz.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2ao4mpvt0j21k214aqc9.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2antuwwxgj20z40h2aes.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anujcpptj20v20r2dkk.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/cfaa8811jw1f2anvsjkfij21kw0rd7ew.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anu9p7jpj21ia0zeqhn.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anujqp26j20zc10ejx7.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anv3vnr3j21kw0y218e.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anvhcu1kj21kw0y0ar3.jpg">
+<meta property="og:updated_time" content="2016-03-28T07:48:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Runtime用法简要剖析">
-<meta name="twitter:description" content="在对导航栏进行深度学习的时候，在网上发现@我就叫Sunny怎么了开源了一个导航栏返回手势的库FDFullscreenPopGesture,我看了看源代码，作者使用Runtime的一些知识实现的，今天我就借这个库的源代码进行Runtime的用法进行学习。">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1ey7v8615vhj20sd0l8n41.jpg">
+<meta name="twitter:title" content="抓包工具Charles的使用心得">
+<meta name="twitter:description" content="在平时开发的时候也经常用到Charles这款软件，它的功能功能非常的强大，不仅仅在Mac上可以用，并且还可以在Windows和Linux下使用。我在iOS开发的工程中使用，就分享一下在Mac上的使用心得吧！">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/cfaa8811jw1f2anux8xirj21kw0zkwij.jpg">
 
 
 
@@ -87,7 +101,7 @@
   };
 </script>
 
-  <title> Runtime用法简要剖析 | 张飞的技术博客 </title>
+  <title> 抓包工具Charles的使用心得 | 张飞的技术博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -226,7 +240,7 @@
             
             
               
-                Runtime用法简要剖析
+                抓包工具Charles的使用心得
               
             
           </h1>
@@ -238,8 +252,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-19T00:00:00+08:00" content="2015-11-19">
-              2015-11-19
+            <time itemprop="dateCreated" datetime="2016-02-18T00:00:00+08:00" content="2016-02-18">
+              2016-02-18
             </time>
           </span>
 
@@ -268,8 +282,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/11/19/Runtime用法剖析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/19/Runtime用法剖析/" itemprop="commentsCount"></span>
+                <a href="/2016/02/18/抓包工具Charles的使用心得/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/18/抓包工具Charles的使用心得/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -279,7 +293,7 @@
 
           
           
-             <span id="/2015/11/19/Runtime用法剖析/" class="leancloud_visitors" data-flag-title="Runtime用法简要剖析">
+             <span id="/2016/02/18/抓包工具Charles的使用心得/" class="leancloud_visitors" data-flag-title="抓包工具Charles的使用心得">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -300,39 +314,39 @@
       
 
       
-        <p>在对导航栏进行深度学习的时候，在网上发现<a href="http://weibo.com/u/1364395395?from=feed&amp;loc=at&amp;nick=%E6%88%91%E5%B0%B1%E5%8F%ABSunny%E6%80%8E%E4%B9%88%E4%BA%86" target="_blank" rel="external">@我就叫Sunny怎么了</a><br>开源了一个导航栏返回手势的库<a href="https://github.com/forkingdog/FDFullscreenPopGesture" target="_blank" rel="external">FDFullscreenPopGesture</a>,我看了看源代码，作者使用Runtime的一些知识实现的，今天我就借这个库的源代码进行Runtime的用法进行学习。</p>
-<a id="more"></a>
-<blockquote>
-<p>如果看过我前面几篇关于Runtime的文章，应该知道Runtime的消息发送机制的原理是对象根据方法编号SEL去映射表查找对应的方法实现。因此在运行时阶段我们利用Runtime的一些方法可以帮助我们实现用正常方法很难办到的事情。</p>
-</blockquote>
-<h3 id="1-给分类动态添加属性"><a href="#1-给分类动态添加属性" class="headerlink" title="1.给分类动态添加属性"></a>1.给分类动态添加属性</h3><p>在<code>FDFullscreenPopGesture</code>中给UIViewController的分类里有这么一个属性：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) _FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;</span><br></pre></td></tr></table></figure>
-<p>这是一个block的属性，block定义如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (^_FDViewControllerWillAppearInjectBlock)(<span class="built_in">UIViewController</span> *viewController, <span class="built_in">BOOL</span> animated);</span><br></pre></td></tr></table></figure>
-<p>看到这里也许你会提问，OC中不是不能给分类添加属性么？正常情况下，OC是不允许给OC添加属性的。但是利用Runtime的特性，这是可以办到的。实现方法如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (_FDViewControllerWillAppearInjectBlock)fd_willAppearInjectBlock</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> objc_getAssociatedObject(<span class="keyword">self</span>, _cmd);<span class="comment">// 根据关联的key，获取关联的值。这里的key等于_cmd,_cmd等于fd_willAppearInjectBlock</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setFd_willAppearInjectBlock:(_FDViewControllerWillAppearInjectBlock)block</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 第一个参数：给哪个对象添加关联</span></span><br><span class="line">    <span class="comment">// 第二个参数：关联的key，通过这个key获取</span></span><br><span class="line">    <span class="comment">// 第三个参数：关联的value</span></span><br><span class="line">    <span class="comment">// 第四个参数:关联的策略</span></span><br><span class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, <span class="keyword">@selector</span>(fd_willAppearInjectBlock), block, OBJC_ASSO<span class="built_in">CIATION_COPY_NONATOMIC</span>);<span class="comment">//关联对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>动态给分类添加属性的方法是：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objc_setAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">const</span> <span class="keyword">void</span> *key, <span class="keyword">id</span> value, objc_AssociationPolicy policy)</span><br></pre></td></tr></table></figure>
-<p>获取这个属性的方法是：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objc_getAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">const</span> <span class="keyword">void</span> *key)</span><br></pre></td></tr></table></figure>
-<p>还有一个方法是移除属性：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objc_removeAssociatedObjects(<span class="keyword">id</span> object)</span><br></pre></td></tr></table></figure></p>
-<p>是的，这样就动态的给<code>UIViewController</code>的分类添加了<code>fd_willAppearInjectBlock</code>这么一个属性。</p>
-<blockquote>
-<p>NOTE：在使用Runtime的这些方法的时候不要忘了导入<code>objc/runtime.h</code>这个头文件哦！</p>
-</blockquote>
-<h3 id="2-动态添加方法"><a href="#2-动态添加方法" class="headerlink" title="2.动态添加方法"></a>2.动态添加方法</h3><p>要想动态添加方法我们必须了解方法是如何执行的，通常我们调用方法是通过<code>[object message]</code>这种方法，除了这种方法还有一种是比较少用的，就是<code>[object performSelector:@selector(message)]</code>这种方式。通过下面这张图我们可以了解一下他们对消息的处理的不同之处。</p>
-<center><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1ey7v8615vhj20sd0l8n41.jpg" alt="iOS消息转发.png"></center>
-
-<p>通过上图，我们可以得知，要想动态添加方法必须是通过<code>[object performSelector:@selector(message)]</code>这种方式调用方法才能在运行时阶段通过Runtime的一些方法达到动态的添加方法。如果现在有一个<code>Person</code>类，在其它地方通过<code>performSelector</code>的方式调用<code>Person</code>的<code>run</code>方法。但是<code>Person</code>类中并没有实现这个方法。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Person p = [Person alloc] init];</span><br><span class="line"><span class="comment">// 这个时候即使Person类没有实现run方法编译器也不会报错</span></span><br><span class="line">[p performSelector:<span class="keyword">@selector</span>(run)];</span><br></pre></td></tr></table></figure>
-<p>这时候只需要在<code>Person</code>中实现<code>resolveInstanceMethod:</code>方法就可以达到动态添加方法的目的。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首先我们要在Person类里面实现我们要动态添加的方法</span></span><br><span class="line"><span class="comment">// 要注意，默认方法都有两个隐式参数</span></span><br><span class="line"><span class="keyword">void</span> run(<span class="keyword">id</span> <span class="keyword">self</span>,SEL sel)&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@ %@"</span>,<span class="keyword">self</span>,<span class="built_in">NSStringFromSelector</span>(sel));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 当一个对象调用未实现的方法，会调用这个方法处理,并且会把对应的方法列表传过来.</span></span><br><span class="line"><span class="comment">// 刚好可以用来判断未实现的方法是不是我们想要动态添加的方法</span></span><br><span class="line">+ (<span class="built_in">BOOL</span>)resolveInstanceMethod:(SEL)sel&#123;</span><br><span class="line">    <span class="comment">//先判断一下传过来的是不是run方法</span></span><br><span class="line">    <span class="keyword">if</span> (sel == <span class="keyword">@selector</span>(run))&#123;</span><br><span class="line">        <span class="comment">//如果是run方法就动态添加run方法</span></span><br><span class="line">        class_addMethod(<span class="keyword">self</span>.class, <span class="keyword">@selector</span>(run),(IMP)run, <span class="string">"v@:"</span>);</span><br><span class="line">        <span class="comment">// 第一个参数：给哪个类添加方法</span></span><br><span class="line">        <span class="comment">// 第二个参数：添加方法的方法编号</span></span><br><span class="line">        <span class="comment">// 第三个参数：添加方法的函数实现（函数地址）,如果是OC方法</span></span><br><span class="line">        <span class="comment">//可以用+(IMP)instanceMethodForSelector:(SEL)aSelector;获得方法的实现。</span></span><br><span class="line">        <span class="comment">// 第四个参数：方法的签名，(返回值+参数类型) v:void @:对象-&gt;self :表示SEL-&gt;_cmd</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样就达到了给一个类动态添加方法的效果了，如果想把方法转发给其他的类实现，需要处理消息转发的第二或第三个函数了。</p>
-<h3 id="3-替换系统自带的方法"><a href="#3-替换系统自带的方法" class="headerlink" title="3.替换系统自带的方法"></a>3.替换系统自带的方法</h3><p>当一些时候，系统自带效果满足不了我们的时候，要么我们自定义，要么直接替换系统的方法。在公有的API是没有方法办到的。我们来看一段<code>FDFullscreenPopGesture</code>的代码(注释是我加的)：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)load</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</span><br><span class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</span><br><span class="line">        Class class = [<span class="keyword">self</span> class];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//获取系统方法的SEL</span></span><br><span class="line">        SEL originalSelector = <span class="keyword">@selector</span>(viewWillAppear:);</span><br><span class="line">        <span class="comment">//获取替换方法的SEL</span></span><br><span class="line">        SEL swizzledSelector = <span class="keyword">@selector</span>(fd_viewWillAppear:);</span><br><span class="line">        <span class="comment">//为了获取IMP指针，获得方法的Method</span></span><br><span class="line">        Method originalMethod = class_getInstanceMethod(class, originalSelector);</span><br><span class="line">        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);</span><br><span class="line">        <span class="comment">//为了安全起见，先判断是否已经存在要交换的方法</span></span><br><span class="line">        <span class="built_in">BOOL</span> success = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));</span><br><span class="line">        <span class="keyword">if</span> (success) &#123;</span><br><span class="line">            class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)fd_viewWillAppear:(<span class="built_in">BOOL</span>)animated</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//不要认为这句代码有错，其实很好理解，在调用这句的时候方法已经交换了</span></span><br><span class="line">    <span class="comment">// Forward to primary implementation.</span></span><br><span class="line">    [<span class="keyword">self</span> fd_viewWillAppear:animated];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.fd_willAppearInjectBlock) &#123;</span><br><span class="line">        <span class="keyword">self</span>.fd_willAppearInjectBlock(<span class="keyword">self</span>, animated);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过上面的代码我们可以看出来，替换系统自带的方式实现需要用到的重要方法是<code>method_exchangeImplementations()</code>方法，并且要注意替换方法里面对自己的调用。这个方法也就是人们常说的<code>Method Swizzling</code>黑魔法，用的时候要注意，这是一把双刃剑！</p>
-<h3 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h3><p>Runtime在项目中很少用，但是要理解它，理解了之后用起来也不危险。如果你喜欢我的文章，不妨扫一扫下面的二维码请我喝杯茶。祝大家在iOS开发的道路上玩得愉快！</p>
-<center><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1ey7veld0soj205k05l74a.jpg" alt=""></center>
+        <p>在平时开发的时候也经常用到Charles这款软件，它的功能功能非常的强大，不仅仅在Mac上可以用，并且还可以在Windows和Linux下使用。我在iOS开发的工程中使用，就分享一下在Mac上的使用心得吧！<br><a id="more"></a></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Charles其实是一款代理服务器，通过成为电脑或者浏览器的代理，然后截取请求和请求结果达到分析抓包的目的。该软件是用Java写的，能够在Windows，Mac，Linux上使用。开发iOS都在Mac系统上吧，安装Charles的时候要先装好Java环境。这么好的软件不是免费的，<a href="http://www.charlesproxy.com" target="_blank" rel="external">官网</a>要好几十刀呢，我这里有一个Mac上的破解版，<a href="http://pan.baidu.com/s/1qXoCiwW" target="_blank" rel="external">点击这里下载</a>，当然不是最新版的。如果你想体验最新版，Charles是提供试用的。</p>
+<h3 id="Charles主要功能"><a href="#Charles主要功能" class="headerlink" title="Charles主要功能"></a>Charles主要功能</h3><ul>
+<li>支持SSL代理。可以截取分析SSL的请求。</li>
+<li>支持流量控制。可以模拟慢速网络以及等待时间（latency）较长的请求。</li>
+<li>支持AJAX调试。可以自动将json或xml数据格式化，方便查看。</li>
+<li>支持AMF调试。可以将Flash Remoting 或 Flex Remoting信息格式化，方便查看。</li>
+<li>支持重发网络请求，方便后端调试。</li>
+<li>支持修改网络请求参数。</li>
+<li>支持网络请求的截获并动态修改。</li>
+<li>检查HTML，CSS和RSS内容是否符合W3C标准。</li>
+</ul>
+<h3 id="开始抓包"><a href="#开始抓包" class="headerlink" title="开始抓包"></a>开始抓包</h3><p>先看一下Charles的庐山真面目吧！<br><img src="http://ww1.sinaimg.cn/large/cfaa8811jw1f2anux8xirj21kw0zkwij.jpg" alt=""></p>
+<p>接下来要把电脑设置为代理<br><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anvkphh3j21kw0zkaiq.jpg" alt=""></p>
+<p>这样你会发现，你通过浏览器请求的网址都会出现在这里，iOS模拟器的所有的网络请求也会出现在这里。点击某一个网址后，你会发现右边会出现这个网址请求的大概信息，点击具体的请求后会出现request和response等信息<br><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anubwqf2j21kw0zqn71.jpg" alt=""></p>
+<p>如果你发现返回的是乱码，首先看是在http请求还是https请求，如果是http请求，那么应该就是返回来的中文乱码,解决方案是找到该软件显示包内容，Contents目录下的info.plist，打开文件找到<code>vmoption</code>,添加<code>-Dfile.encoding=UTF-8</code>即可。<br><img src="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anuf5fbuj21kw1064b9.jpg" alt=""></p>
+<p>如果是https请求出现的乱码，如下图这种情况<br><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anuauw7dj214r0oj1b8.jpg" alt=""></p>
+<p>这时候你就需要安装Charles的CA证书了，首先到去 <a href="http://www.charlesproxy.com/ssl.zip" target="_blank" rel="external">http://www.charlesproxy.com/ssl.zip</a> 下载CA证书文件。双击crt文件，选择总是信任就可以了，当然如果要抓取iPhone设备上的HTTPS请求，需要在iPhone上也安装一个证书，在手机浏览器输入这个网址：<a href="http://charlesproxy.com/getssl" target="_blank" rel="external">http://charlesproxy.com/getssl</a> ，点击安装即可。然后你就可以告别那烦人的乱码，可以愉快地抓包了。</p>
+<h3 id="抓取真机上的包"><a href="#抓取真机上的包" class="headerlink" title="抓取真机上的包"></a>抓取真机上的包</h3><p> 抓取真机上的数据非常的简单，首先使手机和电脑在一个局域网内，不一定非要是一个ip段，只要是同一个路由器下就可以了。按照上面说的把证书安装好，然后找到电脑的IP，你可以选择在终端输入<code>ifconfig en0</code>来获取，也可以选择打开网络偏好设置来查看。</p>
+<p><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anva8cl6j212q0qkteo.jpg" alt="终端获取IP"></p>
+<p><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anuv6dlbj217c11iag8.jpg" alt="网络偏好设置查看IP"></p>
+<p>接下来打开Charles的代理设置：<code>Proxy-&gt;Proxy Settings</code>，设置一下端口号，默认的是8888，这个只要不和其他程序的冲突即可,并且勾选<code>Enable transparent HTTP proxying</code>。</p>
+<p><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anvbeml0j218w0xywkz.jpg" alt="端口号设置"><br>在手机上连接上和电脑在同一局域网的网络上设置HTTP代理。端口号就是刚刚在Charles上设置的那个。<br><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2ao4mpvt0j21k214aqc9.jpg" alt=""><br>然后在手机上随便打开一个网址，这是Charles会弹出一个框让你确认是否代理，点击allow就可以了，然后你就会在Charles上发现手机上的请求了。<br><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2antuwwxgj20z40h2aes.jpg" alt=""></p>
+<h3 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h3><p>在 Charles 的菜单栏选择 <code>Proxy-&gt;Recording Settings</code>，然后选择 <code>Include</code> 栏，选择<code>Add</code>，然后填入需要监控的协议，主机地址，端口号,这样就达到了过滤的目的。如下图：<br><img src="http://ww3.sinaimg.cn/large/cfaa8811jw1f2anujcpptj20v20r2dkk.jpg" alt=""><br>还有一种方法就是在一个网址上右击，选择<code>Focus</code>，然后其他的请求就会被放到一个叫Other Host的文件夹里面，这样也达到了过滤的目的。<br><img src="http://ww1.sinaimg.cn/large/cfaa8811jw1f2anvsjkfij21kw0rd7ew.jpg" alt=""></p>
+<h3 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h3><p>断点的功能搞开发不会不知道，在Charles发起一个请求的时候，我们是可以给某个请求打一个断点的，然后来观察或者修改请求或者返回的内容，但是在这过程中药注意请求的超时时间问题。要针对某一个请求设置断点，只需要在这个请求网址右击选择Breakpoints就可以断点某一个请求了。</p>
+<p><img src="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anu9p7jpj21ia0zeqhn.jpg" alt=""></p>
+<h3 id="模拟网速慢"><a href="#模拟网速慢" class="headerlink" title="模拟网速慢"></a>模拟网速慢</h3><p>有时候在开发的时候我们想要模拟一下网络慢的情况，这时候Charles他是可以帮助到你的，在<code>Proxy</code>-&gt;<code>Throttle Setting</code>，然后选择<code>Enable Throttling</code>，在<code>Throttle Preset</code>下选择网络类型即可，具体设置你可以自行拿捏。</p>
+<p><img src="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anujqp26j20zc10ejx7.jpg" alt=""></p>
+<h3 id="请求重定向"><a href="#请求重定向" class="headerlink" title="请求重定向"></a>请求重定向</h3><p>请求重定向的作用是什么呢？开发中一般都是测试环境，如果我们想对比一下和线上版本的区别的话，可以讲测试的请求重定向到正式环境下。在选择 <code>Tools</code>-&gt;<code>Map Remote下</code>：</p>
+<p><img src="http://ww2.sinaimg.cn/large/cfaa8811jw1f2anv3vnr3j21kw0y218e.jpg" alt=""></p>
+<h3 id="内容替换"><a href="#内容替换" class="headerlink" title="内容替换"></a>内容替换</h3><p>有时候我们会测一下请求的参数不同会带来不同的返回结果以测试是否达到业务需求，或者需要不同的返回结果来验证我们对数据的处理是否正确，这时候需要后台的同事配合，但是有了Charles，我们可以自己把控接口返回来的内容，比如数据的空与否，数据的长短等等。在<code>Tools</code>-&gt;<code>Rewrite Settings</code>下：</p>
+<p><img src="http://ww4.sinaimg.cn/large/cfaa8811jw1f2anvhcu1kj21kw0y0ar3.jpg" alt=""></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>Charles还有一下其他的妙用。慢慢的去发掘吧！</p>
 
       
     </div>
@@ -349,8 +363,6 @@
           
             <a href="/tags/笔记/" rel="tag">#笔记</a>
           
-            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
-          
         </div>
       
 
@@ -358,16 +370,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/15/你要理解的Runtime知识点/" rel="next" title="你要理解的Runtime知识点">
-                <i class="fa fa-chevron-left"></i> 你要理解的Runtime知识点
+              <a href="/2016/01/10/聊聊iOS开发中的单元测试/" rel="next" title="聊聊iOS开发中的单元测试">
+                <i class="fa fa-chevron-left"></i> 聊聊iOS开发中的单元测试
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/05/Runtime实战之导航控制器那些事/" rel="prev" title="Runtime实战之导航控制器那些事">
-                Runtime实战之导航控制器那些事 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/17/iOS开发之UIKit Dynamics学习心得/" rel="prev" title="iOS开发之UIKit Dynamics学习心得">
+                iOS开发之UIKit Dynamics学习心得 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -383,10 +395,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/11/19/Runtime用法剖析/"
-     data-title="Runtime用法简要剖析"
+        <div class="ds-share flat" data-thread-key="2016/02/18/抓包工具Charles的使用心得/"
+     data-title="抓包工具Charles的使用心得"
      data-content=""
-     data-url="zhangfei.tk/2015/11/19/Runtime用法剖析/">
+     data-url="zhangfei.tk/2016/02/18/抓包工具Charles的使用心得/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -413,8 +425,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/11/19/Runtime用法剖析/"
-           data-title="Runtime用法简要剖析" data-url="zhangfei.tk/2015/11/19/Runtime用法剖析/">
+      <div class="ds-thread" data-thread-key="2016/02/18/抓包工具Charles的使用心得/"
+           data-title="抓包工具Charles的使用心得" data-url="zhangfei.tk/2016/02/18/抓包工具Charles的使用心得/">
       </div>
     
   </div>
@@ -537,7 +549,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-给分类动态添加属性"><span class="nav-number">1.</span> <span class="nav-text">1.给分类动态添加属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-动态添加方法"><span class="nav-number">2.</span> <span class="nav-text">2.动态添加方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-替换系统自带的方法"><span class="nav-number">3.</span> <span class="nav-text">3.替换系统自带的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结尾"><span class="nav-number">4.</span> <span class="nav-text">结尾</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Charles主要功能"><span class="nav-number">2.</span> <span class="nav-text">Charles主要功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始抓包"><span class="nav-number">3.</span> <span class="nav-text">开始抓包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抓取真机上的包"><span class="nav-number">4.</span> <span class="nav-text">抓取真机上的包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤"><span class="nav-number">5.</span> <span class="nav-text">过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断点"><span class="nav-number">6.</span> <span class="nav-text">断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟网速慢"><span class="nav-number">7.</span> <span class="nav-text">模拟网速慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求重定向"><span class="nav-number">8.</span> <span class="nav-text">请求重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容替换"><span class="nav-number">9.</span> <span class="nav-text">内容替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">10.</span> <span class="nav-text">其他</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
