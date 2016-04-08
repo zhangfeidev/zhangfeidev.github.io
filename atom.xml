@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>张飞的技术博客</title>
-  <subtitle>一枚专注与移动开发的IT文艺青年</subtitle>
+  <title>小飞的技术博客</title>
+  <subtitle>烂笔头下的程序生涯</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="zhangfei.tk/"/>
