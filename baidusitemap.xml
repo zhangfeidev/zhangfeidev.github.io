@@ -421,26 +421,6 @@
 
     
   <url>
-    <loc>zhangfei.tk/2015/12/31/%E8%AE%B02015/</loc>
-    <lastmod>2016-03-03T07:35:24.000Z</lastmod>
-    <data>
-        <display>
-        <title>记2015</title>
-        <pubTime>2015-12-31T03:11:11.000Z</pubTime>
-        
-        <tag>随笔</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活碎碎念" url="zhangfei.tk/categories/%E7%94%9F%E6%B4%BB%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>zhangfei.tk/2015/05/26/Xcode%E6%96%87%E4%BB%B6%E5%A4%B9/</loc>
     <lastmod>2015-12-19T16:06:04.000Z</lastmod>
     <data>
@@ -468,9 +448,9 @@
         <title>使用Xcode中遇到的问题</title>
         <pubTime>2015-05-17T16:00:00.000Z</pubTime>
         
-        <tag>iOS</tag>
-         
         <tag>Xcode</tag>
+         
+        <tag>iOS</tag>
          
          
            
