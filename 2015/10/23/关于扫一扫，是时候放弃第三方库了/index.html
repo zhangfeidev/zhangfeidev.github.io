@@ -27,18 +27,45 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="笔记,二维码," />
@@ -50,7 +77,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -60,11 +87,11 @@
 <meta name="description" content="扫一扫这个功能我们并不陌生，微信QQ加好友扫一扫，路边搞推广的扫一扫，吃饭付钱扫一扫。看来这个扫一扫应用的地方还真不少啊！打开手机看了看安装的APP,社交类APP有扫一扫，支付类的APP有扫一扫，连浏览器都有扫一扫。看来这个扫一扫不可小视！说不定哪天在你的项目中你的boss就要你给他加个扫一扫的功能呢！对于iOS开发要想做扫一扫这个功能，并不是很难，我们需要做的就是处理二维码(QRCode)而已。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于扫一扫，是时候放弃第三方了!">
-<meta property="og:url" content="zhangfei.tk/2015/10/23/关于扫一扫，是时候放弃第三方库了/index.html">
-<meta property="og:site_name" content="小飞的技术博客">
+<meta property="og:url" content="http://yoursite.com/2015/10/23/关于扫一扫，是时候放弃第三方库了/index.html">
+<meta property="og:site_name" content="三爷的窝">
 <meta property="og:description" content="扫一扫这个功能我们并不陌生，微信QQ加好友扫一扫，路边搞推广的扫一扫，吃饭付钱扫一扫。看来这个扫一扫应用的地方还真不少啊！打开手机看了看安装的APP,社交类APP有扫一扫，支付类的APP有扫一扫，连浏览器都有扫一扫。看来这个扫一扫不可小视！说不定哪天在你的项目中你的boss就要你给他加个扫一扫的功能呢！对于iOS开发要想做扫一扫这个功能，并不是很难，我们需要做的就是处理二维码(QRCode)而已。">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/cfaa8811jw1ey7veld0soj205k05l74a.jpg">
-<meta property="og:updated_time" content="2016-03-23T05:04:19.000Z">
+<meta property="og:updated_time" content="2016-06-21T13:37:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于扫一扫，是时候放弃第三方了!">
 <meta name="twitter:description" content="扫一扫这个功能我们并不陌生，微信QQ加好友扫一扫，路边搞推广的扫一扫，吃饭付钱扫一扫。看来这个扫一扫应用的地方还真不少啊！打开手机看了看安装的APP,社交类APP有扫一扫，支付类的APP有扫一扫，连浏览器都有扫一扫。看来这个扫一扫不可小视！说不定哪天在你的项目中你的boss就要你给他加个扫一扫的功能呢！对于iOS开发要想做扫一扫这个功能，并不是很难，我们需要做的就是处理二维码(QRCode)而已。">
@@ -76,17 +103,22 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Muse',
-    sidebar: {"position":"right","display":"hide"},
+    sidebar: {"position":"left","display":"hide"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: 13053268,
       author: '博主'
     }
   };
 </script>
 
-  <title> 关于扫一扫，是时候放弃第三方了! | 小飞的技术博客 </title>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/10/23/关于扫一扫，是时候放弃第三方库了/"/>
+
+  <title> 关于扫一扫，是时候放弃第三方了! | 三爷的窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -94,25 +126,6 @@
   
 
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-64177819-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?88f14784f52b40a5e212d560afbe9da4";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -126,7 +139,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -136,7 +149,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">小飞的技术博客</span>
+      <span class="site-title">三爷的窝</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -161,7 +174,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -171,7 +184,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -181,7 +194,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -288,6 +301,7 @@
               </span>
           
 
+          
         </div>
       </header>
     
@@ -334,7 +348,7 @@
 <p>从图片中直接读取二维码的功能在iOS7上面苹果没有实现，不过在iOS上已经填补了这一功能。主要用到的是读取主要用到CoreImage。</p>
 </blockquote>
 <p>废话不多说，直接上代码。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSString</span> *)scQRReaderForImage:(<span class="built_in">UIImage</span> *)qrimage&#123;</span><br><span class="line">    <span class="built_in">CIContext</span> *context = [<span class="built_in">CIContext</span> contextWithOptions:<span class="literal">nil</span>];</span><br><span class="line">    <span class="built_in">CIDetector</span> *detector = [<span class="built_in">CIDetector</span> detectorOfType:<span class="built_in">CIDetectorTypeQRCode</span> context:context options:@&#123;<span class="built_in">CIDetectorAccuracy</span>:<span class="built_in">CIDetectorAccuracyHigh</span>&#125;];</span><br><span class="line">    <span class="built_in">CIImage</span> *image = [<span class="built_in">CIImage</span> imageWith<span class="built_in">CGImage</span>:qrimage.CGImage];</span><br><span class="line">    <span class="built_in">NSArray</span> *features = [detector featuresInImage:image];</span><br><span class="line">    <span class="built_in">CIQRCodeFeature</span> *feature = [features firstObject];</span><br><span class="line">    <span class="built_in">NSString</span> *result = feature.messageString;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">NSString</span> *)scQRReaderForImage:(<span class="built_in">UIImage</span> *)qrimage&#123;</span><br><span class="line">    <span class="built_in">CIContext</span> *context = [<span class="built_in">CIContext</span> contextWithOptions:<span class="literal">nil</span>];</span><br><span class="line">    <span class="built_in">CIDetector</span> *detector = [<span class="built_in">CIDetector</span> detectorOfType:<span class="built_in">CIDetectorTypeQRCode</span> context:context options:@&#123;<span class="built_in">CIDetectorAccuracy</span>:<span class="built_in">CIDetectorAccuracyHigh</span>&#125;];</span><br><span class="line">    <span class="built_in">CIImage</span> *image = [<span class="built_in">CIImage</span> imageWithCGImage:qrimage.CGImage];</span><br><span class="line">    <span class="built_in">NSArray</span> *features = [detector featuresInImage:image];</span><br><span class="line">    <span class="built_in">CIQRCodeFeature</span> *feature = [features firstObject];</span><br><span class="line">    <span class="built_in">NSString</span> *result = feature.messageString;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>既然讲到要从相册获取照片，那么顺便把从相册获取照片也讲一下吧。</p>
 <blockquote>
 <p>从相册获取照片主要用到的是<code>UIImagePickerController</code>，这是苹果给我们分装好的一个相册选取的控制器。实现起来也是很简单的。</p>
@@ -345,7 +359,7 @@
 <h3 id="生成二维码"><a href="#生成二维码" class="headerlink" title="生成二维码"></a>生成二维码</h3><blockquote>
 <p>生成二维码和从图片中读取二维码一样要用到<code>CoreImage</code>,具体步骤如下：</p>
 </blockquote>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UIImage</span> *)makeQRCodeForString(<span class="built_in">NSString</span> *)string&#123;</span><br><span class="line">	<span class="built_in">NSString</span> *text = string;</span><br><span class="line">	<span class="built_in">NSData</span> *stringData = [text dataUsingEncoding: <span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">	<span class="comment">//生成</span></span><br><span class="line">	<span class="built_in">CIFilter</span> *qrFilter = [<span class="built_in">CIFilter</span> filterWithName:<span class="string">@"CIQRCodeGenerator"</span>];</span><br><span class="line">	[qrFilter setValue:stringData forKey:<span class="string">@"inputMessage"</span>];</span><br><span class="line">	[qrFilter setValue:<span class="string">@"M"</span> forKey:<span class="string">@"inputCorrectionLevel"</span>];</span><br><span class="line">	<span class="comment">//二维码颜色</span></span><br><span class="line">	<span class="built_in">UIColor</span> *onColor = [<span class="built_in">UIColor</span> redColor];</span><br><span class="line">	<span class="built_in">UIColor</span> *offColor = [<span class="built_in">UIColor</span> blueColor];</span><br><span class="line">	<span class="comment">//上色，如果只要白底黑块的QRCode可以跳过这一步</span></span><br><span class="line">	<span class="built_in">CIFilter</span> *colorFilter = [<span class="built_in">CIFilter</span> filterWithName:<span class="string">@"CIFalseColor"</span></span><br><span class="line">                            			  keysAndValues:</span><br><span class="line">                        	 <span class="string">@"inputImage"</span>,qrFilter.outputImage,</span><br><span class="line">                        	 <span class="string">@"inputColor0"</span>,[<span class="built_in">CIColor</span> colorWith<span class="built_in">CGColor</span>:onColor.CGColor],</span><br><span class="line">                        	 <span class="string">@"inputColor1"</span>,[<span class="built_in">CIColor</span> colorWith<span class="built_in">CGColor</span>:offColor.CGColor],</span><br><span class="line">                        	 <span class="literal">nil</span>];</span><br><span class="line">	<span class="comment">//绘制</span></span><br><span class="line">	<span class="built_in">CIImage</span> *qrImage = colorFilter.outputImage;</span><br><span class="line">	<span class="built_in">CGSize</span> size = <span class="built_in">CGSizeMake</span>(<span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">	<span class="built_in">CGImageRef</span> cgImage = [[<span class="built_in">CIContext</span> contextWithOptions:<span class="literal">nil</span>] create<span class="built_in">CGImage</span>:qrImage 	fromRect:qrImage.extent];</span><br><span class="line">	<span class="built_in">UIGraphicsBeginImageContext</span>(size);</span><br><span class="line">	<span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();</span><br><span class="line">	<span class="built_in">CGContextSetInterpolationQuality</span>(context, k<span class="built_in">CGInterpolationNone</span>);</span><br><span class="line">	<span class="built_in">CGContextScaleCTM</span>(context, <span class="number">1.0</span>, <span class="number">-1.0</span>);<span class="comment">//生成的QRCode就是上下颠倒的,需要翻转一下</span></span><br><span class="line">	<span class="built_in">CGContextDrawImage</span>(context, <span class="built_in">CGContextGetClipBoundingBox</span>(context), cgImage);</span><br><span class="line">	<span class="built_in">UIImage</span> *codeImage = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</span><br><span class="line">	<span class="built_in">UIGraphicsEndImageContext</span>();</span><br><span class="line">	<span class="built_in">CGImageRelease</span>(cgImage);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> [<span class="built_in">UIImage</span> imageWith<span class="built_in">CIImage</span>:qrImage];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UIImage</span> *)makeQRCodeForString(<span class="built_in">NSString</span> *)string&#123;</span><br><span class="line">	<span class="built_in">NSString</span> *text = string;</span><br><span class="line">	<span class="built_in">NSData</span> *stringData = [text dataUsingEncoding: <span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">	<span class="comment">//生成</span></span><br><span class="line">	<span class="built_in">CIFilter</span> *qrFilter = [<span class="built_in">CIFilter</span> filterWithName:<span class="string">@"CIQRCodeGenerator"</span>];</span><br><span class="line">	[qrFilter setValue:stringData forKey:<span class="string">@"inputMessage"</span>];</span><br><span class="line">	[qrFilter setValue:<span class="string">@"M"</span> forKey:<span class="string">@"inputCorrectionLevel"</span>];</span><br><span class="line">	<span class="comment">//二维码颜色</span></span><br><span class="line">	<span class="built_in">UIColor</span> *onColor = [<span class="built_in">UIColor</span> redColor];</span><br><span class="line">	<span class="built_in">UIColor</span> *offColor = [<span class="built_in">UIColor</span> blueColor];</span><br><span class="line">	<span class="comment">//上色，如果只要白底黑块的QRCode可以跳过这一步</span></span><br><span class="line">	<span class="built_in">CIFilter</span> *colorFilter = [<span class="built_in">CIFilter</span> filterWithName:<span class="string">@"CIFalseColor"</span></span><br><span class="line">                            			  keysAndValues:</span><br><span class="line">                        	 <span class="string">@"inputImage"</span>,qrFilter.outputImage,</span><br><span class="line">                        	 <span class="string">@"inputColor0"</span>,[<span class="built_in">CIColor</span> colorWithCGColor:onColor.CGColor],</span><br><span class="line">                        	 <span class="string">@"inputColor1"</span>,[<span class="built_in">CIColor</span> colorWithCGColor:offColor.CGColor],</span><br><span class="line">                        	 <span class="literal">nil</span>];</span><br><span class="line">	<span class="comment">//绘制</span></span><br><span class="line">	<span class="built_in">CIImage</span> *qrImage = colorFilter.outputImage;</span><br><span class="line">	<span class="built_in">CGSize</span> size = <span class="built_in">CGSizeMake</span>(<span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">	<span class="built_in">CGImageRef</span> cgImage = [[<span class="built_in">CIContext</span> contextWithOptions:<span class="literal">nil</span>] createCGImage:qrImage 	fromRect:qrImage.extent];</span><br><span class="line">	<span class="built_in">UIGraphicsBeginImageContext</span>(size);</span><br><span class="line">	<span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();</span><br><span class="line">	<span class="built_in">CGContextSetInterpolationQuality</span>(context, kCGInterpolationNone);</span><br><span class="line">	<span class="built_in">CGContextScaleCTM</span>(context, <span class="number">1.0</span>, <span class="number">-1.0</span>);<span class="comment">//生成的QRCode就是上下颠倒的,需要翻转一下</span></span><br><span class="line">	<span class="built_in">CGContextDrawImage</span>(context, <span class="built_in">CGContextGetClipBoundingBox</span>(context), cgImage);</span><br><span class="line">	<span class="built_in">UIImage</span> *codeImage = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</span><br><span class="line">	<span class="built_in">UIGraphicsEndImageContext</span>();</span><br><span class="line">	<span class="built_in">CGImageRelease</span>(cgImage);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> [<span class="built_in">UIImage</span> imageWithCIImage:qrImage];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当然如果你不想写这个代码的话，你也可以使用一个轻量级的开源代码<a href="https://github.com/fukuchi/libqrencode" target="_blank" rel="external">libqrencode</a>来帮你实现。它的使用非常简单,导入UIImage+MDQRCode这个扩展后，使用UIImage的类方法就可以调用了。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">UIImage</span> *)mdQRCodeForString:(<span class="built_in">NSString</span> *)qrString size:(<span class="built_in">CGFloat</span>)size;</span><br><span class="line">+ (<span class="built_in">UIImage</span> *)mdQRCodeForString:(<span class="built_in">NSString</span> *)qrString size:(<span class="built_in">CGFloat</span>)size fillColor:(<span class="built_in">UIColor</span> *)fillColor;</span><br></pre></td></tr></table></figure>
 <h3 id="QRCScanner"><a href="#QRCScanner" class="headerlink" title="QRCScanner"></a>QRCScanner</h3><p>如果你连上面的代码一点儿都不想写，想一句话就集成扫描功能，你可以使用我封装的<code>QRCScanner</code>,地址点<a href="https://github.com/zhangfeidev/QRCScanner" target="_blank" rel="external">这里</a>。</p>
@@ -358,6 +372,13 @@
     <div>
       
         
+      
+    </div>
+
+    <div>
+      
+        
+
       
     </div>
 
@@ -404,7 +425,7 @@
         <div class="ds-share flat" data-thread-key="2015/10/23/关于扫一扫，是时候放弃第三方库了/"
      data-title="关于扫一扫，是时候放弃第三方了!"
      data-content=""
-     data-url="zhangfei.tk/2015/10/23/关于扫一扫，是时候放弃第三方库了/">
+     data-url="http://yoursite.com/2015/10/23/关于扫一扫，是时候放弃第三方库了/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -432,7 +453,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2015/10/23/关于扫一扫，是时候放弃第三方库了/"
-           data-title="关于扫一扫，是时候放弃第三方了!" data-url="zhangfei.tk/2015/10/23/关于扫一扫，是时候放弃第三方库了/">
+           data-title="关于扫一扫，是时候放弃第三方了!" data-url="http://yoursite.com/2015/10/23/关于扫一扫，是时候放弃第三方库了/">
       </div>
     
   </div>
@@ -469,15 +490,15 @@
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/favicon.png"
-               alt="小飞" />
-          <p class="site-author-name" itemprop="name">小飞</p>
-          <p class="site-description motion-element" itemprop="description">一枚专注移动开发的二次元青年，欢迎交流！</p>
+               src="/images/avatar.png"
+               alt="Feliu-zhang" />
+          <p class="site-author-name" itemprop="name">Feliu-zhang</p>
+          <p class="site-description motion-element" itemprop="description">一枚专注于移动开发的二次元青年，欢迎交流！</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -485,7 +506,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -508,18 +529,20 @@
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/zhangfeidev" target="_blank">
+                <a href="https://github.com/zhangfeidev" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i> GitHub
+                    <i class="fa fa-fw fa-github"></i>
                   
+                  GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/520513453/home?wvr=5" target="_blank">
+                <a href="http://www.weibo.com/520513453" target="_blank" title="微博">
                   
-                    <i class="fa fa-weibo"></i> Weibo
+                    <i class="fa fa-fw fa-weibo"></i>
                   
+                  微博
                 </a>
               </span>
             
@@ -530,26 +553,26 @@
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-            <div class="links-of-blogroll-title">Links</div>
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://www.superqq.com" target="_blank">刚刚在线</a>
+                  <a href="http://www.superqq.com" title="刚刚在线" target="_blank">刚刚在线</a>
                 </li>
               
             </ul>
-          
-        </div>
+          </div>
+        
 
       </section>
 
       
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
           <div class="post-toc">
             
               
@@ -557,9 +580,6 @@
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#二维码是个什么鬼？"><span class="nav-number">1.</span> <span class="nav-text">二维码是个什么鬼？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扫描二维码"><span class="nav-number">2.</span> <span class="nav-text">扫描二维码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从图片中读取二维码"><span class="nav-number">3.</span> <span class="nav-text">从图片中读取二维码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成二维码"><span class="nav-number">4.</span> <span class="nav-text">生成二维码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QRCScanner"><span class="nav-number">5.</span> <span class="nav-text">QRCScanner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
           </div>
         </section>
       
@@ -581,7 +601,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">小飞</span>
+  <span class="author" itemprop="copyrightHolder">Feliu-zhang</span>
 </div>
 
 <div class="powered-by">
@@ -595,8 +615,9 @@
   </a>
 </div>
 
+        
 
-
+        
       </div>
     </footer>
 
@@ -607,12 +628,6 @@
 
   
 
-
-  
-
-
-
-
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
@@ -620,198 +635,58 @@
 </script>
 
 
+
+
+
+
+
+
+
+  
+
+
+
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
+  
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
+  
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
-
-  
-  
 
   
   
-<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
 
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    NexT.motion.middleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-
-      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          NexT.utils.displaySidebar();
-        }
-      }
-    };
-  });
-</script>
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -836,7 +711,12 @@
 
   
     
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
   
+
 
 
 
@@ -879,6 +759,14 @@
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
           }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
         })
         .fail(function (object, error) {
           console.log("Error: " + error.code + " " + error.message);
@@ -909,6 +797,12 @@
             });
           } else {
             var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
             newcounter.set("title", title);
             newcounter.set("url", url);
             newcounter.set("time", 1);
